@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <style>
-  table {
+    table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -22,65 +23,65 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="file.css">
+  <link rel="stylesheet" href="sprout.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-sm bg-light navbar-light navbar-align-right">
-    <!-- Brand/logo -->
-    <a class="navbar-brand" href="index.html">HOME</a>
+  <div class="p-5">
+    <section class="nav">
+      <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
+      <button type="button" class="btn bg-transparent mx-1" style="font-size:24px" onclick="location.href = 'sprout.html'">🌱</button>
+      <div style="flex: 1"></div>
+      <form class="align-baseline">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Project name" />
+          <div class="input-group-btn">
+            <button class="btn btn-view mx-1" type="submit">Add project</button>
+          </div>
+        </div>
+      </form>
+      <button type="button" class="btn btn-view" onclick="location.href = 'index.html'">Log out</button>
+    </section>
 
-    <!-- Links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">Back</a>
-        </li>
-    </ul>
-    <ul class="navbar-nav navbar-right">
-        <li class="nav-item">
-            <a class="nav-link" href="sprout.html">Sprout</a>
-        </li>
-    </ul>
-  </nav>
+    <div class="sprout text-center">
+      <h1>Sprout Page</h1>
+      <p>Chronological history</p>
+    </div>
+    <table>
+      <td style="text-align: center; vertical-align: middle;"><img src="sprout.jpg" alt="sprout" width="125" height="111"></td>
+      </tr>
 
-<div class="jumbotron text-center">
-  <h1>Sprout Page</h1>
-  <p>Chronological history</p>
-</div>
+      <tr>
+        <td style="text-align: center; vertical-align: middle;">Note</td>
 
-<table>
-    <td style="text-align: center; vertical-align: middle;"><img src="sprout.jpg" alt="sprout" width="125" height="111"></td>
-  </tr>
+      </tr>
+      <tr>
+        <td style="text-align: center; vertical-align: middle;">Note</td>
 
-  <tr>
-    <td style="text-align: center; vertical-align: middle;">Note</td>
+      </tr>
+      <tr>
+        <td style="text-align: center; vertical-align: middle;">Note</td>
 
-  </tr>
-  <tr>
-    <td style="text-align: center; vertical-align: middle;">Note</td>
+      </tr>
+      <tr>
+        <td style="text-align: center; vertical-align: middle;"><img src="sprout.jpg" alt="sprout" width="125" height="111"></td>
 
-  </tr>
-  <tr>
-    <td style="text-align: center; vertical-align: middle;">Note</td>
+      </tr>
 
-  </tr>
-  <tr>
-    <td style="text-align: center; vertical-align: middle;"><img src="sprout.jpg" alt="sprout" width="125" height="111"></td>
+      <tr>
+        <td style="text-align: center; vertical-align: middle;"><img src="sprout.jpg" alt="sprout" width="125" height="111"></td>
 
-  </tr>
+      </tr>
 
-  <tr>
-    <td style="text-align: center; vertical-align: middle;"><img src="sprout.jpg" alt="sprout" width="125" height="111"></td>
+      <tr>
+        <td style="text-align: center; vertical-align: middle;">Note</td>
 
-  </tr>
-
-  <tr>
-    <td style="text-align: center; vertical-align: middle;">Note</td>
-
-  </tr>
-</table>
+      </tr>
+    </table>
 
 
 </body>
+
 </html>
