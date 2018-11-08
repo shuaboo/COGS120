@@ -4,7 +4,6 @@ html, body {
     background: linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205)); 
 ;
 }
-
 .row {
     padding: 30px 20px;
 }
@@ -26,6 +25,7 @@ html, body {
 .btn-view{
     font-weight:600;
     float: center;
+    color: rgb(103, 221, 205)
 }
 
 .nav {
