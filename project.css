@@ -2,7 +2,7 @@ html, body {
     background: rgb(103, 221, 205);  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205));  
     background: linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205)); 
-    height: 100%;
+;
 }
 
 .row {
