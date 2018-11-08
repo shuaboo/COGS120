@@ -14,20 +14,15 @@ html, body {
     box-shadow:5px 10px 0px rgba(0, 109, 73, 0.123);
 }
 .content {
-    padding: 20px 30px; 
     position:relative;
+    font-weight:600;
+    text-align: center;
 }
 .content h3 {
     margin-bottom:30px; 
     font-weight:800; 
     font-size:30px; 
     color: rgb(103, 221, 205);
-}
-.btn-view{
-    background: rgb(103, 221, 205); 
-    color:#fff; 
-    font-weight:600;
-    float: center;
 }
 
 .nav {
