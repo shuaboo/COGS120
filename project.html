@@ -20,6 +20,7 @@
         var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
         var thisProjectFolder = allProjects[projectName] || [];
         thisProjectFolder.forEach(({text, url}) => displayCard(text, url));
+        document.getElementById("title").innerHTML = projectName;
     }
 
     function displayCard(text, url) {
@@ -52,6 +53,8 @@
             <button type="button" class="btn btn-view" onclick="location.href = 'index.html'">Log out</button>
             <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
             <button type="button" class="btn bg-transparent mx-1" style="font-size:24px" onclick="location.href = 'sprout.html'">🌱</button>
+            <div style="flex: 2"></div>
+            <b>Project: <span id="title"></span></b>
             <div style="flex: 1"></div>
             <form class="align-baseline">
                 <div class="input-group">
