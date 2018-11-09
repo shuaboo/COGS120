@@ -2,30 +2,17 @@
 <html lang="en">
 
 <head>
-  <style>
-    table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  td, th {
-    border: 5px;
-    text-align: left;
-    padding: 8px;
-  }
-
-  tr>td {
-    padding-bottom: 1em;
-    }
-  </style>
-  <title>Sprout Page</title>
+  <title>Sprout</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="sprout.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -45,43 +32,35 @@
       <button type="button" class="btn btn-view" onclick="location.href = 'index.html'">Log out</button>
     </section>
 
-    <div class="sprout text-center">
-      <h1>Sprout Page</h1>
-      <p>Chronological history</p>
+    <div class="container">
+      <div class="page-header text-center">
+        <h1 id="timeline">Treeline</h1>
+      </div>
+      <ul class="timeline">
+        <li>
+          <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-body">
+              <div class="card" class="btn btn-view" onclick="location.href = 'file.html'">
+                <img class="card-img-top" src="sprout.jpg">
+              </div>
+            </div>
+            <div class="timeline-heading">
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago</small></p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge success"><i class="glyphicon glyphicon-credit-card"></i></div>
+          <div class="timeline-panel">
+              <div class="card" class="btn btn-view" onclick="location.href = 'file.html'">
+                  <img class="card-img-top" src="sprout.jpg">
+                </div>
+            <div class="timeline-heading">
+                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 23 hours ago</small></p>
+            </div>
+          </div>
+        </li>
+        
+      </ul>
     </div>
-    <table>
-      <td style="text-align: center; vertical-align: middle;"><img src="sprout.jpg" alt="sprout" width="125" height="111"></td>
-      </tr>
-
-      <tr>
-        <td style="text-align: center; vertical-align: middle;">Note</td>
-
-      </tr>
-      <tr>
-        <td style="text-align: center; vertical-align: middle;">Note</td>
-
-      </tr>
-      <tr>
-        <td style="text-align: center; vertical-align: middle;">Note</td>
-
-      </tr>
-      <tr>
-        <td style="text-align: center; vertical-align: middle;"><img src="sprout.jpg" alt="sprout" width="125" height="111"></td>
-
-      </tr>
-
-      <tr>
-        <td style="text-align: center; vertical-align: middle;"><img src="sprout.jpg" alt="sprout" width="125" height="111"></td>
-
-      </tr>
-
-      <tr>
-        <td style="text-align: center; vertical-align: middle;">Note</td>
-
-      </tr>
-    </table>
-
-
-</body>
-
-</html>
