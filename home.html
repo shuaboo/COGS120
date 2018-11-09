@@ -19,7 +19,7 @@
 
     function displayProject(projectName) {
         cardContainer.insertAdjacentHTML('beforeend', `
-            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+            <div class="card mb-3 container btn" value="${projectName}" onclick="visitPage(this.value)">
                 <div class="card-body content">
                     <h3 class="text-center">${projectName}</h3>
                     Placeholder text
@@ -51,7 +51,7 @@
                 <div class="input-group">
                     <input name="newproj" type="text" class="form-control" placeholder="Project name">
                     <div class="input-group-btn">
-                        <button class="btn btn-view mx-1" onclick="addNewProject(this.form.newproj.value)">Add project</button>
+                        <input type="button" class="btn btn-view mx-1" onclick="addNewProject(this.form.newproj.value)" value="Add project">
                     </div>
                 </div>
             </form>
