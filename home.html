@@ -19,7 +19,7 @@
 
     function displayProject(projectName) {
         cardContainer.insertAdjacentHTML('beforeend', `
-            <div class="card mb-3 container btn" value="${projectName}" onclick="visitPage(this.value)">
+            <div class="card mb-3 container btn" value="${projectName}" onclick="visitPage('${projectName}')">
                 <div class="card-body content">
                     <h3 class="text-center">${projectName}</h3>
                     Placeholder text
@@ -57,42 +57,42 @@
             </form>
         </section>
         <section class="card-columns p-3" id="cardContainer">
-            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+            <div class="card mb-3 container btn" onclick="visitPage('Food pics')">
                 <div class="card-body content">
                     <h3 class="text-center">Food pics</h3>
                     All my food pics
                 </div>
                 <h4>☀️</h4>
             </div>
-            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+            <div class="card mb-3 container btn" onclick="visitPage('Nature')">
                 <div class="card-body content">
                     <h3 class="text-center">Nature</h3>
                     Pretty aesthetic things
                 </div>
                 <h4>🌱</h4>
             </div>
-            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+            <div class="card mb-3 container btn" onclick="visitPage('Dance videos')">
                 <div class="card-body content">
                     <h3 class="text-center">Dance videos</h3>
                     All dance videos (unsorted)
                 </div>
                 <h4>☀️</h4>
             </div>
-            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+            <div class="card mb-3 container btn" onclick="visitPage('Friends')">
                 <div class="card-body content">
                     <h3 class="text-center">Friends</h3>
                     Being extra with my friends
                 </div>
                 <h4>🌱</h4>
             </div>
-            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+            <div class="card mb-3 container btn" onclick="visitPage('Art')">
                 <div class="card-body content">
                     <h3 class="text-center">Art</h3>
                     Me trying to draw
                 </div>
                 <h4>🌱</h4>
             </div>
-            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+            <div class="card mb-3 container btn" onclick="visitPage('Study aesthetic')">
                 <div class="card-body content">
                     <h3 class="text-center">Study aesthetic</h3>
                     Nice notes and layouts

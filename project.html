@@ -19,8 +19,6 @@
     window.onload = function() {
         var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
         var thisProjectFolder = allProjects[projectName] || [];
-        console.log(allProjects);
-
         thisProjectFolder.forEach(({text, url}) => displayCard(text, url));
     }
 
@@ -36,9 +34,8 @@
 
     function addNewCard(text, url) {
         if (url) {
-            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
             var thisProjectFolder = allProjects[projectName] || [];
-            console.log("adding", text, url)
             thisProjectFolder.push({text, url});
             allProjects[projectName] = thisProjectFolder;
             localStorage.setItem("projectFolders", JSON.stringify(allProjects));
