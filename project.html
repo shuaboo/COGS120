@@ -13,6 +13,40 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    window.projectName = new URLSearchParams(window.location.search).get('projectName');
+
+    window.onload = function() {
+        var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+        var thisProjectFolder = allProjects[projectName] || [];
+        console.log(allProjects);
+
+        thisProjectFolder.forEach(({text, url}) => displayCard(text, url));
+    }
+
+    function displayCard(text, url) {
+        console.log(text, url);
+        var container = document.getElementById("cards");
+        container.insertAdjacentHTML("beforeend", `
+            <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=?${projectName}&filename=${encodeURI(text)}'">
+                <img class="card-img-top" src="${url}">
+                <div class="card-body">${text}</div>
+            </div>`);
+    }
+
+    function addNewCard(text, url) {
+        if (url) {
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
+            var thisProjectFolder = allProjects[projectName] || [];
+            console.log("adding", text, url)
+            thisProjectFolder.push({text, url});
+            allProjects[projectName] = thisProjectFolder;
+            localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+            displayCard(text, url);
+        }
+    }
+
+</script>
 </head>
 
 <body>
@@ -23,53 +57,20 @@
             <div style="flex: 1"></div>
             <form class="align-baseline">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="New Leaf" />
+                    <input name="newCardText" type="text" class="form-control" placeholder="New Leaf Name" />
+                    <input name="newCardUrl" type="text" class="form-control" placeholder="Image URL" />
                     <div class="input-group-btn">
-                        <button class="btn btn-view mx-1" type="submit">Add Leaf</button>
+                        <button class="btn btn-view mx-1" type="button"
+                            onclick="addNewCard(this.form.newCardText.value, this.form.newCardUrl.value);">
+                        Add Leaf</button>
                     </div>
                 </div>
             </form>
             <button type="button" class="btn btn-view" onclick="location.href = 'index.html'">Log out</button>
         </section>
-        <section class='cards '>
-            <div class="card-columns p-3">
-                <div class="card" class="btn btn-view" onclick="location.href = 'file.html'">
-                    <img class="card-img-top" src="sprout.jpg">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-                <div class="card" class="btn btn-view" onclick="location.href = 'file.html'">
-                    <img class="card-img-top" src="sprout.jpg">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-                <div class="card" class="btn btn-view" onclick="location.href = 'file.html'">
-                    <img class="card-img-top" src="sky.jpg">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-                <div class="card" class="btn btn-view" onclick="location.href = 'file.html'">
-                    <img class="card-img-top" src="video.png">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-                <div class="card" class="btn btn-view" onclick="location.href = 'file.html'">
-                    <img class="card-img-top" src="sky.jpg">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-                <div class="card" class="btn btn-view" onclick="location.href = 'file.html'">
-                    <img class="card-img-top" src="video.png">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-
+        <section class="cards">
+            <div id="cards" class="card-columns p-3">
+            </div>
         </section>
     </div>
 </body>
