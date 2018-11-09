@@ -17,7 +17,7 @@ if (!projectFolder) {
 }
 projectFolder = JSON.parse(projectFolder);
 window.onload = function(){
-  var projectFolder = localStorage.getItem("projectFolders"));
+  var projectFolder = localStorage.getItem("projectFolders");
   if (!projectFolder) {
     var emptyArray = [];
     localStorage.setItem("projectFolders", JSON.stringify(emptyArray));
