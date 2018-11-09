@@ -22,15 +22,15 @@
             <div style="flex: 1"></div>
             <form class="align-baseline">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Project name" />
+                    <input id="newproj" type="text" class="form-control" placeholder="Project name">
                     <div class="input-group-btn">
-                        <button class="btn btn-view mx-1" type="submit">Add project</button>
+                        <button class="btn btn-view mx-1" onclick="myFunction()">Add project</button>
                     </div>
                 </div>
             </form>
             <button type="button" class="btn btn-view" onclick="location.href = 'index.html'">Log out</button>
         </section>
-        <section class="card-columns p-3">
+        <section class="card-columns p-3" id="myTable">
             <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
                 <div class="card-body content">
                     <h3 class="text-center">Food pics</h3>
@@ -44,7 +44,7 @@
                     Pretty aesthetic things
                 </div>
                 <h4>🌱</h4>
-                
+
             </div>
             <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
                 <div class="card-body content">
@@ -76,4 +76,41 @@
             </div>
         </section>
     </div>
+    <script>
+    function myFunction() {
+      var x = document.getElementById("newproj").value;
+      if (x != "") {
+        alert("fuck");
+        var newCard = document.createElement('div');
+        document.getElementById('myTable').appendChild('newCard');
+        newCard.className = "card mb-3 container btn";
+        newCard.onclick = "location.href = 'project.html'";
+        newCard.value = x;
+        var cardBody = document.createElement('div');
+        cardBody.className = "card-body content";
+        document.getElementById('newCard').appendChild('cardBody');
+        var titleText = document.createElement('h3');
+        document.getElementById('cardBody').appendChild('titleText');
+        titleText.className = "text-center";
+        titleText.value = x;
+        cardBody.value = x;
+        var emoji = document.createElement('h4');
+        document.getElementById('cardBody').appendChild('emoji');
+        emoji.value = "🌱";
+      }
+      //old
+      /*var table = document.getElementById("myTable");
+      var x = document.getElementById("newproj").value;
+      if (x != "") {
+        var btn = document.createElement('input');
+        btn.type = "button";
+        btn.className = "td";
+        btn.value = x;
+        btn.onclick = "location.href = 'project.html'";
+        table.appendChild(btn);
+        var br = document.createElement("br");
+        table.appendChild(br);
+        */
+      }
+</script>
 </body>
