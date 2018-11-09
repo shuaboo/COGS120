@@ -24,10 +24,9 @@
     }
 
     function displayCard(text, url) {
-        console.log(text, url);
         var container = document.getElementById("cards");
         container.insertAdjacentHTML("beforeend", `
-            <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=?${projectName}&filename=${encodeURI(text)}'">
+            <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=?${encodeURI(projectName)}&filename=${encodeURI(text)}'">
                 <img class="card-img-top" src="${url}">
                 <div class="card-body">${text}</div>
             </div>`);
@@ -37,7 +36,8 @@
         if (url) {
             var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
             var thisProjectFolder = allProjects[projectName] || [];
-            thisProjectFolder.push({text, url});
+            var date = new Date().toLocaleString();
+            thisProjectFolder.push({text, url, date});
             allProjects[projectName] = thisProjectFolder;
             localStorage.setItem("projectFolders", JSON.stringify(allProjects));
             displayCard(text, url);
@@ -52,7 +52,7 @@
         <section class="nav">
             <button type="button" class="btn btn-view" onclick="location.href = 'index.html'">Log out</button>
             <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
-            <button type="button" class="btn bg-transparent mx-1" style="font-size:24px" onclick="location.href = 'sprout.html'">🌱</button>
+            <button type="button" class="btn bg-transparent mx-1" style="font-size:24px" onclick="location.href=`sprout.html?projectName=${encodeURI(projectName)}`">🌱</button>
             <div style="flex: 2"></div>
             <b>Project: <span id="title"></span></b>
             <div style="flex: 1"></div>

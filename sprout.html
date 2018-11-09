@@ -13,13 +13,42 @@
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    window.projectName = new URLSearchParams(window.location.search).get('projectName');
+    window.invertedFlag = false;
+
+    window.onload = function() {
+        var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+        var thisProjectFolder = allProjects[projectName] || [];
+        thisProjectFolder.forEach(({text, url, date}) => displaySprout(text, url, date));
+        document.getElementById("title").innerHTML = projectName;
+    }
+
+    function displaySprout(text, url, date) {
+        console.log(text, url, date);
+        var container = document.getElementById("timeline");
+        container.insertAdjacentHTML("beforeend", `<li ${invertedFlag ? 'class="timeline-inverted"' : ''}>
+          <div class="timeline-badge success"><i class="glyphicon glyphicon-credit-card"></i></div>
+          <div class="timeline-panel">
+              <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=?${encodeURI(projectName)}&filename=${encodeURI(text)}'">
+                  <img class="card-img-top" src="${url}">
+                </div>
+            <div class="timeline-heading">
+                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>${date}</small></p>
+            </div>
+          </div>
+        </li>`);
+        window.invertedFlag = !window.invertedFlag;
+    }
+
+</script>
 </head>
 
 <body>
   <div class="p-5">
     <section class="nav">
       <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
-      <button class="btn btn-view mx-1" type="button" onclick="location.href = 'project.html'">All files</button>
+      <button class="btn btn-view mx-1" type="button" onclick="location.href=`project.html?projectName=${encodeURI(projectName)}`">All files</button>
       <div style="flex: 1"></div>
       <form class="align-baseline">
         
@@ -29,33 +58,8 @@
 
     <div class="container">
       <div class="page-header text-center">
-        <h1 id="timeline">Treeline</h1>
+        <h1>Treeline</h1>
       </div>
-      <ul class="timeline">
-        <li>
-          <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-body">
-              <div class="card" class="btn btn-view" onclick="location.href = 'file.html'">
-                <img class="card-img-top" src="sprout.jpg">
-              </div>
-            </div>
-            <div class="timeline-heading">
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago</small></p>
-            </div>
-          </div>
-        </li>
-        <li class="timeline-inverted">
-          <div class="timeline-badge success"><i class="glyphicon glyphicon-credit-card"></i></div>
-          <div class="timeline-panel">
-              <div class="card" class="btn btn-view" onclick="location.href = 'file.html'">
-                  <img class="card-img-top" src="sprout.jpg">
-                </div>
-            <div class="timeline-heading">
-                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 23 hours ago</small></p>
-            </div>
-          </div>
-        </li>
-        
+      <ul id="timeline" class="timeline">
       </ul>
     </div>
