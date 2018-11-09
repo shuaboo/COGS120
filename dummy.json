@@ -1,2 +1,8 @@
-var links = {"https://imgur.com/G3Jq9xM.jpg", "https://imgur.com/G3Jq9xM.jpg"};
-var states = {"inspiration", "creation"};
+[{
+    "link" : "https://imgur.com/G3Jq9xM.jpg",
+    "state" : "inspiration",
+},
+{
+    "link" : "https://imgur.com/G3Jq9xM.jpg",
+    "state" : "creation",
+}]
