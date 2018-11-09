@@ -35,30 +35,28 @@
     </script>
 </head>
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-sm bg-light navbar-light navbar-align-right">
-    <!-- Brand/logo -->
-    <a class="navbar-brand" href="index.html">LOG OUT</a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light navbar-align-right">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="index.html">LOG OUT</a>
 
-    <!-- Links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">Back</a>
-        </li>
-    </ul>
-</nav>
-<div class="jumbotron">
-<h2 style="font-size: 3vw"; class="ex1" id="notehead"><b>Project View</b></h2>
-<div class="cards" id="cardContainer">
-
-</div>
-<br>
-
-<input id="newproj">
-
-<button type="button" onclick="addNewProject()">Add new Project</button>
-</div>
-
-
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Back</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="jumbotron">
+        <h2 style="font-size: 3vw"; class="ex1" id="notehead"><b>Project View</b></h2>
+        <div class="cards" id="cardContainer"> </div>
+        <br/>
+        <input id="newproj">
+        <button type="button" onclick="addNewProject()">Add new Project</button>
+        <br/>
+        <br/>
+        <br/>
+        <button type="button" style="color: red" onclick="localStorage.clear(); location.reload()">Delete all projects</button>
+    </div>
 </body>
 </html>
