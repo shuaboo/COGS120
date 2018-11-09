@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="home.css"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -13,18 +14,25 @@
       var projectFolder = localStorage.getItem("projectFolders") || "[]";
       var projectFolderObject = JSON.parse(localStorage.getItem("projectFolders")) || {};
       var cardContainer = document.getElementById("cardContainer");
-      Object.keys(projectFolderObject).forEach(function(projectName) {
-          cardContainer.insertAdjacentHTML('beforeend', `<input type="button" class="card btn" value="${projectName}" onclick="visitPage(this.value);"><br/>`);
-      });
-      //start();
+      Object.keys(projectFolderObject).forEach(displayProject);
     }
 
-    function addNewProject() {
+    function displayProject(projectName) {
+        cardContainer.insertAdjacentHTML('beforeend', `
+            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+                <div class="card-body content">
+                    <h3 class="text-center">${projectName}</h3>
+                    Placeholder text
+                </div>
+                <h4>☀️</h4>
+            </div>`);
+    }
+
+    function addNewProject(projectName) {
         var cardContainer = document.getElementById("cardContainer");
-        var projectName = document.getElementById("newproj").value;
         var existingProjectFolders = JSON.parse(localStorage.getItem("projectFolders")) || {};
         if (projectName != "" && !existingProjectFolders[projectName]) {
-          cardContainer.insertAdjacentHTML('beforeend', `<input type="button" class="card btn" value="${projectName}" onclick="visitPage(this.value);"><br/>`);
+          displayProject(projectName);
           existingProjectFolders[projectName] = [];
           localStorage.setItem("projectFolders", JSON.stringify(existingProjectFolders));
         }
@@ -35,28 +43,64 @@
     </script>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-sm bg-light navbar-light navbar-align-right">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="index.html">LOG OUT</a>
-
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">Back</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="jumbotron">
-        <h2 style="font-size: 3vw"; class="ex1" id="notehead"><b>Project View</b></h2>
-        <div class="cards" id="cardContainer"> </div>
-        <br/>
-        <input id="newproj">
-        <button type="button" onclick="addNewProject()">Add new Project</button>
-        <br/>
-        <br/>
-        <br/>
-        <button type="button" style="color: red" onclick="localStorage.clear(); location.reload()">Delete all projects</button>
+    <div class="p-5">
+        <section class="nav">
+            <button class="btn btn-view mx-1" type="button" onclick="location.href = 'index.html'">Log out</button>
+            <div style="flex: 1"></div>
+            <form class="align-baseline">
+                <div class="input-group">
+                    <input name="newproj" type="text" class="form-control" placeholder="Project name">
+                    <div class="input-group-btn">
+                        <button class="btn btn-view mx-1" onclick="addNewProject(this.form.newproj.value)">Add project</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section class="card-columns p-3" id="cardContainer">
+            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+                <div class="card-body content">
+                    <h3 class="text-center">Food pics</h3>
+                    All my food pics
+                </div>
+                <h4>☀️</h4>
+            </div>
+            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+                <div class="card-body content">
+                    <h3 class="text-center">Nature</h3>
+                    Pretty aesthetic things
+                </div>
+                <h4>🌱</h4>
+            </div>
+            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+                <div class="card-body content">
+                    <h3 class="text-center">Dance videos</h3>
+                    All dance videos (unsorted)
+                </div>
+                <h4>☀️</h4>
+            </div>
+            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+                <div class="card-body content">
+                    <h3 class="text-center">Friends</h3>
+                    Being extra with my friends
+                </div>
+                <h4>🌱</h4>
+            </div>
+            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+                <div class="card-body content">
+                    <h3 class="text-center">Art</h3>
+                    Me trying to draw
+                </div>
+                <h4>🌱</h4>
+            </div>
+            <div class="card mb-3 container btn" onclick="location.href = 'project.html'">
+                <div class="card-body content">
+                    <h3 class="text-center">Study aesthetic</h3>
+                    Nice notes and layouts
+                </div>
+                <h4>☀️</h4>
+            </div>
+        </section>
     </div>
+    <button type="button" style="color: red" onclick="localStorage.clear(); location.reload()">Delete all projects</button>
 </body>
 </html>
