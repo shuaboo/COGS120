@@ -10,9 +10,14 @@
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-var projectFolders = [];
+var projectFolders = JSON.parse(localStorage.getItem("projectFolders"));
+if (projectFolders == null) {
+  projectFolders = [];
+  localStorage.setItem("projectFolders", projectFolders);
+}
 window.onload = function(){
-  projectFolders.forEach(function(projectName) {
+  projectFolderObject = JSON.parse(localStorage.getItem("projectFolders"));
+  projectFolderObject.forEach(function(projectName) {
     var table = document.getElementById("myTable");
     var btn = document.createElement('input');
     btn.type = "button";
@@ -39,7 +44,9 @@ function myFunction() {
       table.appendChild(btn);
       var br = document.createElement("br");
       table.appendChild(br);
-      projectFolders.push(x);
+      var existingProjectFolders = JSON.parse(localStorage.getItem("projectFolders"));
+      existingProjectFolders.push(x);
+      localStorage.setItem("projectFolders", JSON.stringify(existingProjectFolders));
     }
 }
 function visitPage() {
