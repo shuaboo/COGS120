@@ -10,10 +10,8 @@
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-var projectFolder = JSON.parse(localStorage.getItem("projectFolders"));
-if (projectFolder == null) {
-  projectFolders = [];
-  localStorage.setItem("projectFolders", projectFolders);
+var projectFolder = JSON.parse(localStorage.getItem("projectFolders")) || [];
+  localStorage.setItem("projectFolders", projectFolder);
 }
 window.onload = function(){
   projectFolderObject = JSON.parse(localStorage.getItem("projectFolders"));
