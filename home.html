@@ -1,24 +1,25 @@
 <html>
+
 <head>
     <title>Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="home.css"> 
+    <link rel="stylesheet" href="home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-    window.onload = function(){
-      var projectFolder = localStorage.getItem("projectFolders") || "[]";
-      var projectFolderObject = JSON.parse(localStorage.getItem("projectFolders")) || {};
-      var cardContainer = document.getElementById("cardContainer");
-      Object.keys(projectFolderObject).forEach(displayProject);
-    }
+        window.onload = function () {
+            var projectFolder = localStorage.getItem("projectFolders") || "[]";
+            var projectFolderObject = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            var cardContainer = document.getElementById("cardContainer");
+            Object.keys(projectFolderObject).forEach(displayProject);
+        }
 
-    function displayProject(projectName) {
-        cardContainer.insertAdjacentHTML('beforeend', `
+        function displayProject(projectName) {
+            cardContainer.insertAdjacentHTML('beforeend', `
             <div class="card mb-3 container btn" value="${projectName}" onclick="visitPage('${projectName}')">
                 <div class="card-body content">
                     <h3 class="text-center">${projectName}</h3>
@@ -26,32 +27,60 @@
                 </div>
                 <h4>🌱</h4>
             </div>`);
-    }
-
-    function addNewProject(projectName) {
-        var cardContainer = document.getElementById("cardContainer");
-        var existingProjectFolders = JSON.parse(localStorage.getItem("projectFolders")) || {};
-        if (projectName != "" && !existingProjectFolders[projectName]) {
-          displayProject(projectName);
-          existingProjectFolders[projectName] = [];
-          localStorage.setItem("projectFolders", JSON.stringify(existingProjectFolders));
         }
-    }
-    function visitPage(name) {
-      window.location = "project.html?projectName=" + encodeURI(name);
-    }
+
+        function addNewProject(projectName) {
+            var cardContainer = document.getElementById("cardContainer");
+            var existingProjectFolders = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            if (projectName != "" && !existingProjectFolders[projectName]) {
+                displayProject(projectName);
+                existingProjectFolders[projectName] = [];
+                localStorage.setItem("projectFolders", JSON.stringify(existingProjectFolders));
+            }
+        }
+        function visitPage(name) {
+            window.location = "project.html?projectName=" + encodeURI(name);
+        }
     </script>
 </head>
+
 <body>
     <div class="p-5">
         <section class="nav">
-            <button class="btn btn-view mx-1" type="button" onclick="location.href = 'index.html'">Log out</button>
+            <!-- Button trigger modal -->
+            <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
+            <button type="button" class="btn btn-view mx-1" data-toggle="modal" data-target="#exampleModal">
+                    New Project
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                    <input name="newproj" type="text" class="form-control" placeholder="Project name">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-view" data-dismiss="modal" onclick="addNewProject(this.form.newproj.value)"
+                                value="Add project">Plant Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <div style="flex: 1"></div>
             <form class="align-baseline">
                 <div class="input-group">
-                    <input name="newproj" type="text" class="form-control" placeholder="Project name">
                     <div class="input-group-btn">
-                        <input type="button" class="btn btn-view mx-1" onclick="addNewProject(this.form.newproj.value)" value="Add project">
+                            <button class="btn btn-view mx-1" type="button" onclick="location.href = 'index.html'">Log out</button>
+                        
+
                     </div>
                 </div>
             </form>
@@ -65,16 +94,8 @@
                 <h4>🌱</h4>
             </div>
         </section>
-        <section class="card-columns p-3" id="cardContainer">
-            <div class="card mb-3 container btn" onclick="visitPage('First Project')">
-                <div class="card-body content">
-                    <h3 class="text-center">First Project</h3>
-                    example project
-                </div>
-                <h4>🌱</h4>
-            </div>
-        </section>
     </div>
     <button type="button" style="color: red" onclick="localStorage.clear(); location.reload()">Delete all projects</button>
 </body>
+
 </html>
