@@ -22,17 +22,22 @@ html, body {
     font-size:30px; 
     color: rgb(103, 221, 205);
 }
-.btn-view{
-    font-weight:600;
-    float: center;
-    color: rgb(103, 221, 205)
-}
-
 .nav {
     width: 100%;
     justify-content: flex-end;
     align-items: center;
 }
+.btn-view{
+    font-weight:600;
+    float: center;
+    color: rgb(103, 221, 205)
+}
 .card-columns {
       column-count: 4;
   }
+#title {
+    margin-bottom:30px; 
+    font-weight:800; 
+    font-size:30px; 
+    color: rgb(103, 221, 205);
+}
