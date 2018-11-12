@@ -68,8 +68,12 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <input name="newCardText" type="text" class="form-control" placeholder="New Leaf Name" />
-                            <input name="newCardUrl" type="text" class="form-control" placeholder="Image URL" />
+                            <div class="form-group">
+                                <input name="newCardText" type="text" class="form-control" placeholder="New Leaf Name" />
+                            </div>
+                            <div class="form-group">
+                                <input name="newCardUrl" type="text" class="form-control" placeholder="Image URL" />
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-view mx-1" type="button" data-dismiss="modal" onclick="addNewCard(this.form.newCardText.value, this.form.newCardUrl.value);">
