@@ -1,3 +1,47 @@
+html, body {
+  background: rgb(103, 221, 205);  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205));  
+  background: linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205)); 
+  height: 100%;
+}
+.row {
+  padding: 30px 20px;
+}
+
+.content {
+  position:relative;
+  font-weight:600;
+  text-align: center;
+}
+.content h3 {
+  margin-bottom:30px; 
+  font-weight:800; 
+  font-size:30px; 
+  color: rgb(103, 221, 205);
+}
+.nav {
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+.btn-view{
+  font-weight:600;
+  float: center;
+  color: rgb(103, 221, 205)
+}
+.btn-view2{
+  font-weight:600;
+  float: center;
+  color: rgb(103, 221, 205)
+}
+#title {
+  margin-bottom:30px; 
+  font-weight:800; 
+  font-size:30px; 
+  color: rgb(103, 221, 205);
+}
+
+/*timeline structure*/
 .timeline {
     list-style: none;
     padding: 20px 0 20px;
