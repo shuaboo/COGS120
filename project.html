@@ -14,58 +14,81 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-    window.projectName = new URLSearchParams(window.location.search).get('projectName');
+        window.projectName = new URLSearchParams(window.location.search).get('projectName');
 
-    window.onload = function() {
-        var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
-        var thisProjectFolder = allProjects[projectName] || [];
-        thisProjectFolder.forEach(({text, url}) => displayCard(text, url));
-        document.getElementById("title").innerHTML = projectName;
-    }
+        window.onload = function () {
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+            var thisProjectFolder = allProjects[projectName] || [];
+            thisProjectFolder.forEach(({ text, url }) => displayCard(text, url));
+            document.getElementById("title").innerHTML = projectName;
+        }
 
-    function displayCard(text, url) {
-        var container = document.getElementById("cards");
-        container.insertAdjacentHTML("beforeend", `
+        function displayCard(text, url) {
+            var container = document.getElementById("cards");
+            container.insertAdjacentHTML("beforeend", `
             <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=?${encodeURI(projectName)}&filename=${encodeURI(text)}'">
                 <img class="card-img-top" src="${url}">
                 <div class="card-body">${text}</div>
             </div>`);
-    }
-
-    function addNewCard(text, url) {
-        if (url) {
-            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
-            var thisProjectFolder = allProjects[projectName] || [];
-            var date = new Date().toLocaleString();
-            thisProjectFolder.push({text, url, date});
-            allProjects[projectName] = thisProjectFolder;
-            localStorage.setItem("projectFolders", JSON.stringify(allProjects));
-            displayCard(text, url);
         }
-    }
 
-</script>
+        function addNewCard(text, url) {
+            if (url) {
+                var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+                var thisProjectFolder = allProjects[projectName] || [];
+                var date = new Date().toLocaleString();
+                thisProjectFolder.push({ text, url, date });
+                allProjects[projectName] = thisProjectFolder;
+                localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+                displayCard(text, url);
+            }
+        }
+
+    </script>
 </head>
 
 <body>
     <div class='p-5'>
         <section class="nav">
-            <button type="button" class="btn btn-view" onclick="location.href = 'index.html'">Log out</button>
             <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-view mx-1" data-toggle="modal" data-target="#exampleModal">
+                    Add Leaf
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input name="newCardText" type="text" class="form-control" placeholder="New Leaf Name" />
+                                <input name="newCardUrl" type="text" class="form-control" placeholder="Image URL" />
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-view mx-1" type="button" data-dismiss="modal" onclick="addNewCard(this.form.newCardText.value, this.form.newCardUrl.value);"> 
+                                    Add Leaf</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             <button type="button" class="btn bg-transparent mx-1" style="font-size:24px" onclick="location.href=`sprout.html?projectName=${encodeURI(projectName)}`">🌱</button>
             <div style="flex: 2"></div>
             <b>Project: <span id="title"></span></b>
             <div style="flex: 1"></div>
             <form class="align-baseline">
                 <div class="input-group">
-                    <input name="newCardText" type="text" class="form-control" placeholder="New Leaf Name" />
-                    <input name="newCardUrl" type="text" class="form-control" placeholder="Image URL" />
+
                     <div class="input-group-btn">
-                        <button class="btn btn-view mx-1" type="button"
-                            onclick="addNewCard(this.form.newCardText.value, this.form.newCardUrl.value);">
-                        Add Leaf</button>
-                    </div>
-                </div>
+                            <button type="button" class="btn btn-view" onclick="location.href = 'index.html'">Log out</button>
+                        
+                        
             </form>
         </section>
         <section class="cards">
