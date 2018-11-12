@@ -4,7 +4,6 @@ html, body {
     background: linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205)); 
     height: 100%;
 }
-
 .row {
     padding: 30px 20px;
 }
@@ -24,7 +23,6 @@ html, body {
     font-size:30px; 
     color: rgb(103, 221, 205);
 }
-
 .nav {
     width: 100%;
     justify-content: flex-end;
