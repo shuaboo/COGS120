@@ -78,14 +78,12 @@ html, body {
     clear: both;
   }
   .timeline > li > .timeline-panel {
-    width: 46%;
+    width: 30%;
     float: left;
-    border: 1px solid #d4d4d4;
     border-radius: 2px;
-
     position: relative;
     -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+
   }
   .timeline > li > .timeline-panel:before {
     position: absolute;
@@ -142,11 +140,11 @@ html, body {
     left: -14px;
     right: auto;
   }
-  .timeline-badge.primary {
-    background-color: #2e6da4 !important;
+  .timeline-badge.white {
+    background-color: #ffffff !important;
   }
   .timeline-badge.success {
-    background-color: #3f903f !important;
+    background-color:  rgb(103, 221, 205)!important;
   }
   .timeline-badge.warning {
     background-color: #f0ad4e !important;
