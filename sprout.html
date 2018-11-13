@@ -28,14 +28,14 @@
       console.log(text, url, date);
       var container = document.getElementById("timeline");
       container.insertAdjacentHTML("beforeend", `<li ${invertedFlag ? 'class="timeline-inverted"' : ''}>
-          <div class="timeline-badge success"><i class="glyphicon glyphicon-credit-card"></i></div>
+          <div class="timeline-badge white"><i class="glyphicon glyphicon"></i></div>
           <div class="timeline-panel">
               
             <!-- Button trigger modal -->
             <div class="card" class="btn btn-view" data-toggle="modal" data-target="#file_${text}">
                 <img class="card-img-top" src="${url}">
                 <div class="card-body">${text}
-                  <small class="text-muted"><i class="glyphicon glyphicon-time"></i>${date}</small></p>
+                  <small class="text"><i class="glyphicon glyphicon-time"></i>${date}</small></p>
                 </div>
                 
             </div>
@@ -74,7 +74,7 @@
     <section class="nav">
       <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
       <button class="btn btn-view mx-1" type="button" onclick="location.href=`project.html?projectName=${encodeURI(projectName)}`">All
-        files</button>
+        leaves</button>
       <div style="flex: 1"></div>
       <button type="button" class="btn btn-view" onclick="location.href = 'index.html'">Log out</button>
     </section>
