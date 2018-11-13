@@ -2,45 +2,63 @@
 <html lang="en">
 
 <head>
-    <title>Sprout</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="file.css">
-    <link rel="stylesheet" href="file.js">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <title>Sprout</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="sprout.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    window.projectName = new URLSearchParams(window.location.search).get('projectName');
+    window.invertedFlag = false;
+
+    window.onload = function () {
+      var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+      var thisProjectFolder = allProjects[projectName] || [];
+      thisProjectFolder.forEach(({ text, url, date }) => displaySprout(text, url, date));
+      document.getElementById("title").innerHTML = projectName;
+    }
+
+    function displaySprout(text, url, date) {
+      console.log(text, url, date);
+      var container = document.getElementById("timeline");
+      container.insertAdjacentHTML("beforeend", `<li ${invertedFlag ? 'class="timeline-inverted"' : ''}>
+          <div class="timeline-badge success"><i class="glyphicon glyphicon-credit-card"></i></div>
+          <div class="timeline-panel">
+              <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=${encodeURI(projectName)}&fileName=${encodeURI(text)}'">
+                  <img class="card-img-top" src="${url}">
+                </div>
+            <div class="timeline-heading">
+                <p>${text}
+                <small class="text-muted"><i class="glyphicon glyphicon-time"></i>${date}</small></p>
+            </div>
+          </div>
+        </li>`);
+      window.invertedFlag = !window.invertedFlag;
+    }
+
+  </script>
 </head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body>
-    <div class="p-5">
-                <section class="nav">
-                    <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Back</button>
-                </section>
+  <div class="p-5">
+    <section class="nav">
+      <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
+      <button class="btn btn-view mx-1" type="button" onclick="location.href=`project.html?projectName=${encodeURI(projectName)}`">All
+        files</button>
+      <div style="flex: 1"></div>
+      <button type="button" class="btn btn-view" onclick="location.href = 'index.html'">Log out</button>
+    </section>
 
-    <div class="jumbotron">
-
-        <div class="row">
-            <div class="col-sm-5">
-                <img class="img-fluid" src="sky.jpg" style="position: relative" id="sky"/>
-
-
-            </div>
-             <!-- Notes -->
-            <div class="col-sm-7">
-                <h2 style="font-size: 3vw"; class="ex1" id="notehead"><b>Sky Photo</b></h2>
-                <ul contenteditable="true" id="notes">
-                    <li>Gradient is nice for a background</li>
-                    <li>Cotton candy like clouds would look really nice in drawing</li>
-                    <li>Wistful vibes</li>
-                </ul>
-                <button type="button" class="btn btn-outline-dark"  onclick="location.href = '"id="save">SAVE</button>
-            </div>
-
-        </div>
+    <div class="container">
+      <div class="page-header text-center">
+        <h1><span id="title"></span>Treeline</h1>
+      </div>
+      <ul id="timeline" class="timeline">
+      </ul>
     </div>
-    </div>
-
-</body>
