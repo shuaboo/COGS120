@@ -26,7 +26,7 @@
         function displayCard(text, url) {
             var container = document.getElementById("cards");
             container.insertAdjacentHTML("beforeend", `
-            <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=?${encodeURI(projectName)}&filename=${encodeURI(text)}'">
+            <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=${encodeURI(projectName)}&fileName=${encodeURI(text)}'">
                 <img class="card-img-top" src="${url}">
                 <div class="card-body">${text}</div>
             </div>`);

@@ -30,7 +30,7 @@
       container.insertAdjacentHTML("beforeend", `<li ${invertedFlag ? 'class="timeline-inverted"' : ''}>
           <div class="timeline-badge success"><i class="glyphicon glyphicon-credit-card"></i></div>
           <div class="timeline-panel">
-              <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=?${encodeURI(projectName)}&filename=${encodeURI(text)}'">
+              <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=${encodeURI(projectName)}&fileName=${encodeURI(text)}'">
                   <img class="card-img-top" src="${url}">
                 </div>
             <div class="timeline-heading">
