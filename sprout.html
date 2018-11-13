@@ -20,7 +20,7 @@
     window.onload = function () {
       var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
       var thisProjectFolder = allProjects[projectName] || [];
-      thisProjectFolder.forEach(({ text, url, date }) => displaySprout(text, url, date));
+      thisProjectFolder.reverse().forEach(({ text, url, date }) => displaySprout(text, url, date));
       document.getElementById("title").innerHTML = projectName;
     }
 
