@@ -30,12 +30,36 @@
       container.insertAdjacentHTML("beforeend", `<li ${invertedFlag ? 'class="timeline-inverted"' : ''}>
           <div class="timeline-badge success"><i class="glyphicon glyphicon-credit-card"></i></div>
           <div class="timeline-panel">
-              <div class="card" class="btn btn-view" onclick="location.href = 'file.html?projectName=${encodeURI(projectName)}&fileName=${encodeURI(text)}'">
-                  <img class="card-img-top" src="${url}">
+              
+            <!-- Button trigger modal -->
+            <div class="card" class="btn btn-view" data-toggle="modal" data-target="#file_${text}">
+                <img class="card-img-top" src="${url}">
+                <div class="card-body">${text}
+                  <small class="text-muted"><i class="glyphicon glyphicon-time"></i>${date}</small></p>
                 </div>
-            <div class="timeline-heading">
-                <p>${text}
-                <small class="text-muted"><i class="glyphicon glyphicon-time"></i>${date}</small></p>
+                
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="file_${text}" tabindex="-1" role="dialog" aria-labelledby="file_${text}_label"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <form class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="file_${text}_label">${text}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="card-img-top" src="${url}">
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal">
+                                OK</button>
+                        </div>
+                    </form>
+                </div>
             </div>
           </div>
         </li>`);
