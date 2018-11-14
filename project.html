@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal" onclick="saveNote(${text}, ${url}, ${notes}, document.getElementById('notesText').textContent)">Save</button>
+                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal" onclick="saveNote('${text}', '${url}', '${notes}', document.getElementById('notesText').innerText)">Save</button>
                         </div>
                     </form>
                 </div>
@@ -67,8 +67,8 @@
           var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
           var thisProjectFolder = allProjects[projectName] || [];
           for (i = 0; i < thisProjectFolder.length; i++) {
-            if (thisProjectFolder[i][text] == ftext && thisProjectFolder[i][url] == furl && thisProjectFolder[i][notes] == fnotes) {
-              thisProjectFolder[i][notes] = newNotes;
+            if (thisProjectFolder[i].text == ftext && thisProjectFolder[i].url == furl && thisProjectFolder[i].notes == fnotes) {
+              thisProjectFolder[i].notes = newNotes;
             }
           }
           allProjects[projectName] = thisProjectFolder;
