@@ -14,13 +14,10 @@
         window.onload = function () {
             var projectFolder = localStorage.getItem("projectFolders") || "[]";
             var projectFolderObject = JSON.parse(localStorage.getItem("projectFolders")) || {};
-            var projectDescription = localStorage.getItem("projectDescriptions") || "[]";
-            var projectDescriptionObject = JSON.parse(localStorage.getItem("projectDescriptions")) || {};
             var cardContainer = document.getElementById("cardContainer");
             var projectFolderKeys = Object.keys(projectFolderObject);
-            var projectDescriptionKeys = Object.keys(projectDescriptionObject);
             for (i = 0; i < projectFolderKeys.length; i++) {
-              displayProject(projectFolderKeys[i], projectDescriptionKeys[i]);
+              displayProject(projectFolderKeys[i], projectFolderObject[projectFolderKeys[i]].description);
             }
         }
 
@@ -37,14 +34,12 @@
 
         function addNewProject(projectName, projectDescription) {
             var cardContainer = document.getElementById("cardContainer");
-            var existingProjectDescriptions = JSON.parse(localStorage.getItem("projectDescriptions")) || {};
             var existingProjectFolders = JSON.parse(localStorage.getItem("projectFolders")) || {};
             if (projectName != "" && !existingProjectFolders[projectName]) {
                 displayProject(projectName, projectDescription);
-                existingProjectFolders[projectName] = [];
-                existingProjectDescription[projectDescription] = [];
+                existingProjectFolders[projectName] = {};
+                existingProjectFolders[projectName].description = projectDescription;
                 localStorage.setItem("projectFolders", JSON.stringify(existingProjectFolders));
-                localStorage.setItem("projectDescriptions", JSON.stringify(existingProjectDescriptions));
             }
         }
         function visitPage(name) {
