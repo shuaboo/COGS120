@@ -19,11 +19,11 @@
         window.onload = function () {
             var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
             var thisProjectFolder = allProjects[projectName] || [];
-            thisProjectFolder.forEach(({ text, url }) => displayCard(text, url));
+            thisProjectFolder.forEach(({ text, url, notes }) => displayCard(text, url, notes));
             document.getElementById("title").innerHTML = projectName;
         }
 
-        function displayCard(text, url) {
+        function displayCard(text, url, notes) {
             var container = document.getElementById("cards");
             container.insertAdjacentHTML("beforeend", `
             <!-- Button trigger modal -->
@@ -49,15 +49,13 @@
                             </div>
                             <div class="col-sm-4" style="display: inline-block; vertical-align: top">
                                 <h2 style="font-size: 3vw"; class="ex1" id="notehead"><b>Notes</b></h2>
-                                <ul contenteditable="true" style="border: 1px inset #dadada">
-                                    <li>Gradient is nice for a background</li>
-                                    <li>Cotton candy like clouds would look really nice in drawing</li>
-                                    <li>Wistful vibes</li>
-                                </ul>
+                                <div id="notesText" contenteditable="true" style="border: 1px inset #dadada">
+                                    ${notes}
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal">Save</button>
+                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal" onclick="saveNote(${text}, ${url}, ${notes}, document.getElementById('notesText').textContent)">Save</button>
                         </div>
                     </form>
                 </div>
@@ -65,16 +63,28 @@
 
             `);
         }
+        function saveNote(ftext, furl, fnotes, newNotes) {
+          var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+          var thisProjectFolder = allProjects[projectName] || [];
+          for (i = 0; i < thisProjectFolder.length; i++) {
+            if (thisProjectFolder[i][text] == ftext && thisProjectFolder[i][url] == furl && thisProjectFolder[i][notes] == fnotes) {
+              thisProjectFolder[i][notes] = newNotes;
+            }
+          }
+          allProjects[projectName] = thisProjectFolder;
+          localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+        }
 
         function addNewCard(text, url) {
             if (url) {
                 var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
                 var thisProjectFolder = allProjects[projectName] || [];
                 var date = new Date().toLocaleString();
-                thisProjectFolder.push({ text, url, date });
+                var notes = "";
+                thisProjectFolder.push({ text, url, notes, date });
                 allProjects[projectName] = thisProjectFolder;
                 localStorage.setItem("projectFolders", JSON.stringify(allProjects));
-                displayCard(text, url);
+                displayCard(text, url, notes);
             }
         }
 
