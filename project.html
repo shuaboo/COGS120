@@ -49,13 +49,13 @@
                             </div>
                             <div class="col-sm-4" style="display: inline-block; vertical-align: top">
                                 <h2 style="font-size: 3vw"; class="ex1" id="notehead"><b>Notes</b></h2>
-                                <div id="notesText" contenteditable="true" style="border: 1px inset #dadada">
+                                <div id="notesText${text}" contenteditable="true" style="border: 1px inset #dadada">
                                     ${notes}
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal" onclick="saveNote('${text}', '${url}', '${notes}', document.getElementById('notesText').innerText)">Save</button>
+                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal" onclick="saveNote('${text}', '${url}', '${notes}', document.getElementById('notesText${text}').innerText)">Save</button>
                         </div>
                     </form>
                 </div>
@@ -73,6 +73,7 @@
           }
           allProjects[projectName] = thisProjectFolder;
           localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+          window.location.reload();
         }
 
         function addNewCard(text, url) {
