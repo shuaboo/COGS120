@@ -14,28 +14,38 @@
         window.onload = function () {
             var projectFolder = localStorage.getItem("projectFolders") || "[]";
             var projectFolderObject = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            var projectDescription = localStorage.getItem("projectDescriptions") || "[]";
+            var projectDescriptionObject = JSON.parse(localStorage.getItem("projectDescriptions")) || {};
             var cardContainer = document.getElementById("cardContainer");
             Object.keys(projectFolderObject).forEach(displayProject);
+            var projectFolderKeys = Object.keys(projectFolderObject);
+            var projectDescriptionKeys = Object.keys(projectDescriptionObject);
+            for (i = 0; i < projectFolderKeys.length; i++) {
+              displayProject(projectFolderKeys[i], projectDescriptionKeys[i]);
+            }
         }
 
-        function displayProject(projectName) {
+        function displayProject(projectName, projectDescription) {
             cardContainer.insertAdjacentHTML('beforeend', `
             <div class="card mb-3 container btn" value="${projectName}" onclick="visitPage('${projectName}')">
                 <div class="card-body content">
                     <h3 class="text-center">${projectName}</h3>
-                    Placeholder text
+                    ${projectDescription}
                 </div>
                 <h4>🌱</h4>
             </div>`);
         }
 
-        function addNewProject(projectName) {
+        function addNewProject(projectName, projectDescription) {
             var cardContainer = document.getElementById("cardContainer");
+            var existingProjectDescriptions = JSON.parse(localStorage.getItem("projectDescriptions")) || {};
             var existingProjectFolders = JSON.parse(localStorage.getItem("projectFolders")) || {};
             if (projectName != "" && !existingProjectFolders[projectName]) {
-                displayProject(projectName);
+                displayProject(projectName, projectDescription);
                 existingProjectFolders[projectName] = [];
+                existingProjectDescription[projectDescription] = [];
                 localStorage.setItem("projectFolders", JSON.stringify(existingProjectFolders));
+                localStorage.setItem("projectDescriptions", JSON.stringify(existingProjectDescriptions));
             }
         }
         function visitPage(name) {
@@ -50,7 +60,7 @@
             <!-- Button trigger modal -->
             <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
             <button type="button" class="btn btn-view mx-1" data-toggle="modal" data-target="#exampleModal">
-                New Project
+                Plant a New Project!
             </button>
 
             <!-- Modal -->
@@ -59,7 +69,7 @@
                 <div class="modal-dialog" role="document">
                     <form class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Plant a new project!</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -67,8 +77,11 @@
                         <div class="modal-body">
                             <input name="newproj" type="text" class="form-control" placeholder="Project name">
                         </div>
+                        <div class="modal-body">
+                            <input name="newdesc" type="text" class="form-control" placeholder="Description">
+                        </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-view" data-dismiss="modal" onclick="addNewProject(this.form.newproj.value)"
+                            <button type="button" class="btn btn-view" data-dismiss="modal" onclick="addNewProject(this.form.newproj.value, this.form.newdesc.value)"
                                 value="Add project">Plant Project</button>
                         </div>
                     </form>
@@ -86,13 +99,13 @@
             </form>
         </section>
         <section class="card-columns p-3" id="cardContainer">
-            <div class="card mb-3 container btn" onclick="visitPage('First Project')">
+            <!--<div class="card mb-3 container btn" onclick="visitPage('First Project')">
                 <div class="card-body content">
                     <h3 class="text-center">First Project</h3>
                     example project
                 </div>
                 <h4>🌱</h4>
-            </div>
+            </div>-->
         </section>
     </div>
     <button type="button" style="color: red" onclick="localStorage.clear(); location.reload()">Delete all projects</button>
