@@ -18,26 +18,26 @@
     window.invertedFlag = false;
 
     window.onload = function () {
-      var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
-      var thisProjectFolder = allProjects[projectName] || [];
-      thisProjectFolder.reverse().forEach(({ text, url, date }) => displaySprout(text, url, date));
+      var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
+      var thisProjectFolder = allProjects[projectName].data || [];
+      thisProjectFolder.reverse().forEach(({ text, url, date, notes }) => displaySprout(text, url, date, notes));
       document.getElementById("title").innerHTML = projectName;
     }
 
-    function displaySprout(text, url, date) {
-      console.log(text, url, date);
+    function displaySprout(text, url, date, notes) {
+      console.log(text, url, date, notes);
       var container = document.getElementById("timeline");
       container.insertAdjacentHTML("beforeend", `<li ${invertedFlag ? 'class="timeline-inverted"' : ''}>
           <div class="timeline-badge white"><i class="glyphicon glyphicon"></i></div>
           <div class="timeline-panel">
-              
+
             <!-- Button trigger modal -->
             <div class="card" class="btn btn-view" data-toggle="modal" data-target="#file_${text}">
                 <img class="card-img-top" src="${url}">
                 <div class="card-body">${text}
                   <small class="text"><i class="glyphicon glyphicon-time"></i>${date}</small></p>
                 </div>
-                
+
             </div>
 
             <!-- Modal -->
@@ -53,6 +53,9 @@
                         </div>
                         <div class="modal-body">
                             <img class="card-img-top" src="${url}">
+                        </div>
+                        <div class="modal-body">
+                            ${notes}
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-view mx-1" type="button" data-dismiss="modal">
