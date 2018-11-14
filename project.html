@@ -17,8 +17,8 @@
         window.projectName = new URLSearchParams(window.location.search).get('projectName');
 
         window.onload = function () {
-            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
-            var thisProjectFolder = allProjects[projectName] || [];
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
+            var thisProjectFolder = allProjects[projectName].data || [];
             thisProjectFolder.forEach(({ text, url, notes }) => displayCard(text, url, notes));
             document.getElementById("title").innerHTML = projectName;
         }
@@ -64,26 +64,26 @@
             `);
         }
         function saveNote(ftext, furl, fnotes, newNotes) {
-          var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
-          var thisProjectFolder = allProjects[projectName] || [];
+          var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
+          var thisProjectFolder = allProjects[projectName].data || [];
           for (i = 0; i < thisProjectFolder.length; i++) {
             if (thisProjectFolder[i].text == ftext && thisProjectFolder[i].url == furl && thisProjectFolder[i].notes == fnotes) {
               thisProjectFolder[i].notes = newNotes;
             }
           }
-          allProjects[projectName] = thisProjectFolder;
+          allProjects[projectName].data = thisProjectFolder;
           localStorage.setItem("projectFolders", JSON.stringify(allProjects));
           window.location.reload();
         }
 
         function addNewCard(text, url) {
             if (url) {
-                var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
-                var thisProjectFolder = allProjects[projectName] || [];
+                var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
+                var thisProjectFolder = allProjects[projectName].data || [];
                 var date = new Date().toLocaleString();
                 var notes = "";
                 thisProjectFolder.push({ text, url, notes, date });
-                allProjects[projectName] = thisProjectFolder;
+                allProjects[projectName].data = thisProjectFolder;
                 localStorage.setItem("projectFolders", JSON.stringify(allProjects));
                 displayCard(text, url, notes);
             }

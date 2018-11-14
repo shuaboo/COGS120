@@ -13,7 +13,7 @@
     <script>
         window.onload = function () {
             var projectFolder = localStorage.getItem("projectFolders") || "[]";
-            var projectFolderObject = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            var projectFolderObject = JSON.parse(projectFolder);
             var cardContainer = document.getElementById("cardContainer");
             var projectFolderKeys = Object.keys(projectFolderObject);
             for (i = 0; i < projectFolderKeys.length; i++) {
@@ -39,6 +39,7 @@
                 displayProject(projectName, projectDescription);
                 existingProjectFolders[projectName] = {};
                 existingProjectFolders[projectName].description = projectDescription;
+                existingProjectFolders[projectName].data = [];
                 localStorage.setItem("projectFolders", JSON.stringify(existingProjectFolders));
             }
         }
