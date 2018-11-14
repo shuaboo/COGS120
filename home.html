@@ -17,7 +17,6 @@
             var projectDescription = localStorage.getItem("projectDescriptions") || "[]";
             var projectDescriptionObject = JSON.parse(localStorage.getItem("projectDescriptions")) || {};
             var cardContainer = document.getElementById("cardContainer");
-            Object.keys(projectFolderObject).forEach(displayProject);
             var projectFolderKeys = Object.keys(projectFolderObject);
             var projectDescriptionKeys = Object.keys(projectDescriptionObject);
             for (i = 0; i < projectFolderKeys.length; i++) {
