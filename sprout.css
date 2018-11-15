@@ -34,6 +34,9 @@ html, body {
   float: center;
   color: rgb(103, 221, 205)
 }
+.card {
+  padding: 10px; 
+}
 #title {
   margin-bottom:30px; 
   font-weight:800; 
