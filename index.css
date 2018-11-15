@@ -2,8 +2,8 @@
 .login-block{
     height: 100vh;
     background: rgb(103, 221, 205);  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205));  
-    background: linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205)); 
+    background: -webkit-linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205) 400px);  
+    background: linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205) 400px); 
     float:left;
     width:100%;
     padding : 50px 0;
