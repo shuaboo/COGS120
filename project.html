@@ -96,6 +96,8 @@
     <div class='p-5'>
         <section class="nav">
             <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
+            <button type="button" class="btn btn-view mx-1" onclick="location.href=`sprout.html?projectName=${encodeURI(projectName)}`">Treeline</button>
+            
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-view mx-1" data-toggle="modal" data-target="#exampleModal">
                 New Leaf
@@ -127,7 +129,6 @@
                     </form>
                 </div>
             </div>
-            <button type="button" class="btn bg-transparent mx-1" style="font-size:24px" onclick="location.href=`sprout.html?projectName=${encodeURI(projectName)}`">🌱</button>
             <div style="flex: 1"></div>
             <b><span id="title"></span></b>
             <div style="flex: 2"></div>
@@ -142,6 +143,7 @@
         </section>
         <section class="cards">
             <div id="cards" class="card-columns p-3">
+                <div class='card'>Add your inspirations and creations to grow new leaves!</div>
             </div>
         </section>
     </div>

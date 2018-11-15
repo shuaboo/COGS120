@@ -35,6 +35,9 @@ html, body {
 .card-columns {
       column-count: 4;
   }
+.card {
+    padding: 10px; 
+}
 #title {
     margin-bottom:30px; 
     font-weight:800; 
