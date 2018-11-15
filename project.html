@@ -17,7 +17,7 @@
         window.projectName = new URLSearchParams(window.location.search).get('projectName');
 
         window.onload = function () {
-            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
             var thisProjectFolder = allProjects[projectName].data || [];
             thisProjectFolder.forEach(({ text, url, notes }) => displayCard(text, url, notes));
             document.getElementById("title").innerHTML = projectName;
@@ -64,7 +64,7 @@
             `);
         }
         function saveNote(ftext, furl, fnotes, newNotes) {
-          var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
+          var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
           var thisProjectFolder = allProjects[projectName].data || [];
           for (i = 0; i < thisProjectFolder.length; i++) {
             if (thisProjectFolder[i].text == ftext && thisProjectFolder[i].url == furl && thisProjectFolder[i].notes == fnotes) {
@@ -73,12 +73,29 @@
           }
           allProjects[projectName].data = thisProjectFolder;
           localStorage.setItem("projectFolders", JSON.stringify(allProjects));
-          window.location.reload();
+        }
+
+        function saveTitle(newTitle) {
+            newTitle = encodeURI(newTitle);
+            if (!newTitle) {
+                // Reset title
+                document.getElementById("title").innerHTML = projectName;
+                return;
+            }
+
+            // Move the key from projectName to newTitle
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+            allProjects[newTitle] = allProjects[projectName];
+            delete allProjects[projectName];
+            localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+
+            // Reload window with new title
+            window.location.search = `projectName=${newTitle}`;
         }
 
         function addNewCard(text, url) {
             if (url) {
-                var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
+                var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
                 var thisProjectFolder = allProjects[projectName].data || [];
                 var date = new Date().toLocaleString();
                 var notes = "";
@@ -130,7 +147,10 @@
                 </div>
             </div>
             <div style="flex: 1"></div>
-            <b><span id="title"></span></b>
+
+            <!-- Title editing form -->
+            <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
+
             <div style="flex: 2"></div>
             <form class="align-baseline">
                 <div class="input-group">
