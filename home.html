@@ -13,20 +13,9 @@
     <script>
         window.onload = function () {
             var existingProjectFolders = JSON.parse(localStorage.getItem("projectFolders")) || {};
-            if (Object.keys(existingProjectFolders).length == 0) {
-                var cardContainer = document.getElementById("cardContainer");
-                cardContainer.insertAdjacentHTML('beforeend', `
-                <div class="card mb-3 container" id="defaultProject">
-                    <div class="card-body content">
-                        <h3 class="text-center">Begin Planting</h3>
-                        No project yet? No problem! Plant a new project above!
-                    </div>
-                </div>`);
-            } else {
-                for (var key in existingProjectFolders) {
-                    var desc = existingProjectFolders[key].description;
-                    displayProject(key, desc);
-                }
+            for (var key in existingProjectFolders) {
+                var desc = existingProjectFolders[key].description;
+                displayProject(key, desc);
             }
         }
 
@@ -50,10 +39,6 @@
                 existingProjectFolders[projectName].description = projectDescription;
                 existingProjectFolders[projectName].data = [];
                 localStorage.setItem("projectFolders", JSON.stringify(existingProjectFolders));
-            }
-            var defaultProject = document.getElementById("defaultProject");
-            if (defaultProject) {
-                defaultProject.remove();
             }
         }
         function visitPage(name) {
@@ -109,6 +94,12 @@
 
         <!-- Container for projects -->
         <section class="card-columns p-3" id="cardContainer">
+            <div class="card mb-3 container" id="defaultProject">
+                <div class="card-body content">
+                    <h3 class="text-center">Begin Planting</h3>
+                    No project yet? No problem! Plant a new project above!
+                </div>
+            </div>
         </section>
     </div>
     <button type="button" style="color: red" onclick="localStorage.clear(); location.reload()">Delete all projects</button>
