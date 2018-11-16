@@ -44,3 +44,7 @@ html, body {
     font-size:30px; 
     color: rgb(103, 221, 205);
 }
+/* Make the default project invisible if there are other projects */
+#defaultLeaf:not(:only-child) {
+    display: none;
+}

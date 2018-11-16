@@ -45,6 +45,11 @@ html, body {
   color: rgb(103, 221, 205);
 }
 
+/* Make the default project invisible if there are other projects */
+#defaultLeaf:not(:only-child) {
+  display: none;
+}
+
 /*timeline structure*/
 .timeline {
     list-style: none;
