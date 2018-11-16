@@ -163,8 +163,11 @@
             <div style="flex: 1"></div>
 
             <!-- Title editing form -->
-            <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
-            <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
+            <div style="text-align: center">
+                <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
+                <br>
+                <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
+            </div>
 
             <div style="flex: 2"></div>
             <form class="align-baseline">
