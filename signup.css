@@ -1,0 +1,74 @@
+/*@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");*/
+.login-block{
+    height: 100vh;
+    background: rgb(103, 221, 205);  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205) 400px);  
+    background: linear-gradient(to bottom, rgb(220, 255, 196), rgb(103, 221, 205) 400px); 
+    float:;
+    width:100%;
+    padding : 50px 0;
+}
+/*.banner-sec{background:#fff  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}*/
+.container {
+    background:#fff; 
+    border-radius: 10px; 
+    box-shadow:15px 20px 0px rgba(0, 109, 73, 0.123);
+}
+.login-sec {
+    padding: 50px 30px; 
+    position:relative;
+} /*adds padding around the container*/
+.login-sec .copy-text {
+    position:absolute; 
+    width:80%; 
+    bottom:20px; 
+    font-size:13px; 
+    text-align:center;
+}
+.login-sec .copy-text a {
+    color:rgb(103, 221, 205);}
+.login-sec h2 {
+    margin-bottom:30px; 
+    font-weight:800; 
+    font-size:30px; 
+    color: rgb(103, 221, 205);
+}
+.login-sec h2:after{
+    content:" "; 
+    width:100px; 
+    height:5px; 
+    background:rgb(220, 255, 196); 
+    display:block; 
+    margin-top:20px; 
+    border-radius:3px; 
+    margin-left:auto;
+    margin-right:auto
+}
+.btn-login{
+    background: rgb(103, 221, 205); 
+    color:#fff; 
+    font-weight:600;
+}
+.banner-text{
+    width:70%; 
+    position:absolute; 
+    bottom:40px; 
+    padding-left:20px;
+}
+.banner-text h2{
+    color:#fff; 
+    font-weight:600;
+}
+.banner-text h2:after{
+    content:" "; 
+    width:100px; 
+    height:5px; 
+    background:#FFF; 
+    display:block; 
+    margin-top:20px; 
+    border-radius:3px;
+}
+.banner-text p{
+    color:#fff;
+}
+
