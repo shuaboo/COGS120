@@ -20,14 +20,14 @@
     window.onload = function () {
       var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
       var thisProjectFolder = allProjects[projectName].data || [];
-      thisProjectFolder.reverse().forEach(({ text, url, date, notes }) => displaySprout(text, url, date, notes));
+      thisProjectFolder.forEach(({ text, url, date, notes }) => displaySprout(text, url, date, notes));
       document.getElementById("title").innerHTML = projectName;
     }
 
     function displaySprout(text, url, date, notes) {
       console.log(text, url, date, notes);
       var container = document.getElementById("timeline");
-      container.insertAdjacentHTML("beforeend", `<li ${invertedFlag ? 'class="timeline-inverted"' : ''}>
+      container.insertAdjacentHTML("afterbegin", `<li ${invertedFlag ? 'class="timeline-inverted"' : ''}>
           <div class="timeline-badge white"><i class="glyphicon glyphicon"></i></div>
           <div class="timeline-panel">
 
@@ -74,6 +74,18 @@
       window.invertedFlag = !window.invertedFlag;
     }
 
+    function addNewCard(text, url) {
+        if (url) {
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+            var thisProjectFolder = allProjects[projectName].data || [];
+            var date = new Date().toLocaleString();
+            var notes = "";
+            thisProjectFolder.push({ text, url, notes, date });
+            allProjects[projectName].data = thisProjectFolder;
+            localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+            displaySprout(text, url, date, notes);
+        }
+    }
   </script>
 </head>
 
