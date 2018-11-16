@@ -84,7 +84,7 @@
             <form class="align-baseline">
                 <div class="input-group">
                     <div class="input-group-btn">
-                        <button class="btn btn-view mx-1" type="button" onclick="location.href = 'index.html'">Log out</button>
+                        <button class="btn btn-view mx-1" type="button" onclick="localStorage.clear(); location.href = 'index.html'">Log out</button>
 
 
                     </div>
@@ -102,7 +102,6 @@
             </div>
         </section>
     </div>
-    <button type="button" style="color: red" onclick="localStorage.clear(); location.reload()">Delete all projects</button>
 </body>
 
 </html>
