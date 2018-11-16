@@ -17,10 +17,11 @@
         window.projectName = new URLSearchParams(window.location.search).get('projectName');
 
         window.onload = function () {
-            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
-            var thisProjectFolder = allProjects[projectName].data || [];
-            thisProjectFolder.forEach(({ text, url, notes }) => displayCard(text, url, notes));
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            var thisProjectFolder = allProjects[projectName] || {data: [], description: "nonexistent project!"};
+            thisProjectFolder.data.forEach(({ text, url, notes }) => displayCard(text, url, notes));
             document.getElementById("title").innerHTML = projectName;
+            document.getElementById("description").innerHTML = thisProjectFolder.description;
         }
 
         function displayCard(text, url, notes) {
@@ -64,7 +65,7 @@
             `);
         }
         function saveNote(ftext, furl, fnotes, newNotes) {
-          var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+          var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
           var thisProjectFolder = allProjects[projectName].data || [];
           for (i = 0; i < thisProjectFolder.length; i++) {
             if (thisProjectFolder[i].text == ftext && thisProjectFolder[i].url == furl && thisProjectFolder[i].notes == fnotes) {
@@ -84,7 +85,7 @@
             }
 
             // Move the key from projectName to newTitle
-            var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
             allProjects[newTitle] = allProjects[projectName];
             delete allProjects[projectName];
             localStorage.setItem("projectFolders", JSON.stringify(allProjects));
@@ -93,9 +94,22 @@
             window.location.search = `projectName=${newTitle}`;
         }
 
+        function saveDesc(newDesc) {
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            if (!newDesc) {
+                // Reset description
+                var description = allProjects[projectName].description;
+                document.getElementById("description").innerHTML = description;
+            } else {
+                allProjects[projectName].description = newDesc;
+                localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+                document.getElementById("description").innerHTML = newDesc;
+            }
+        }
+
         function addNewCard(text, url) {
             if (url) {
-                var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "{}");
+                var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
                 var thisProjectFolder = allProjects[projectName].data || [];
                 var date = new Date().toLocaleString();
                 var notes = "";
@@ -150,6 +164,7 @@
 
             <!-- Title editing form -->
             <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
+            <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
 
             <div style="flex: 2"></div>
             <form class="align-baseline">

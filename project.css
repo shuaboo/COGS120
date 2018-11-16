@@ -44,6 +44,12 @@ html, body {
     font-size:30px; 
     color: rgb(103, 221, 205);
 }
+#description {
+    margin-bottom:20px; 
+    font-weight:400; 
+    font-size:12px; 
+    color: rgb(115, 183, 158);
+}
 /* Make the default project invisible if there are other projects */
 #defaultLeaf:not(:only-child) {
     display: none;

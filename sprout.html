@@ -19,9 +19,10 @@
 
     window.onload = function () {
       var allProjects = JSON.parse(localStorage.getItem("projectFolders") || "[]");
-      var thisProjectFolder = allProjects[projectName].data || [];
-      thisProjectFolder.forEach(({ text, url, date, notes }) => displaySprout(text, url, date, notes));
+      var thisProjectFolder = allProjects[projectName] || {data: [], description: "nonexistent project!"};
+      thisProjectFolder.data.forEach(({ text, url, date, notes }) => displaySprout(text, url, date, notes));
       document.getElementById("title").innerHTML = projectName;
+      document.getElementById("description").innerHTML = thisProjectFolder.description;
     }
 
     function displaySprout(text, url, date, notes) {
@@ -72,6 +73,37 @@
           </div>
         </li>`);
       window.invertedFlag = !window.invertedFlag;
+    }
+
+    function saveTitle(newTitle) {
+        newTitle = encodeURI(newTitle);
+        if (!newTitle) {
+            // Reset title
+            document.getElementById("title").innerHTML = projectName;
+            return;
+        }
+
+        // Move the key from projectName to newTitle
+        var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
+        allProjects[newTitle] = allProjects[projectName];
+        delete allProjects[projectName];
+        localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+
+        // Reload window with new title
+        window.location.search = `projectName=${newTitle}`;
+    }
+
+    function saveDesc(newDesc) {
+        var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
+        if (!newDesc) {
+            // Reset description
+            var description = allProjects[projectName].description;
+            document.getElementById("description").innerHTML = description;
+        } else {
+            allProjects[projectName].description = newDesc;
+            localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+            document.getElementById("description").innerHTML = newDesc;
+        }
     }
 
     function addNewCard(text, url) {
@@ -133,7 +165,9 @@
 
     <div class="container">
       <div class="page-header text-center">
-        <h1><span id="title"></span></h1>
+        <!-- Title editing form -->
+        <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
+        <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
       </div>
       <ul id="timeline" class="timeline">
           <li id='defaultLeaf'>
