@@ -65,6 +65,7 @@
             `);
         }
         function saveNote(ftext, furl, fnotes, newNotes) {
+          alert("1");
           var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
           var thisProjectFolder = allProjects[projectName].data || [];
           for (i = 0; i < thisProjectFolder.length; i++) {
@@ -78,7 +79,10 @@
 
         function saveTitle(newTitle) {
             newTitle = encodeURI(newTitle);
-            if (!newTitle || newTitle == projectName) {
+            if (newTitle == projectName) {
+              return;
+            }
+            if (!newTitle) {
                 // Reset title
                 document.getElementById("title").innerHTML = projectName;
                 return;

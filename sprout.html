@@ -77,7 +77,7 @@
 
     function saveTitle(newTitle) {
         newTitle = encodeURI(newTitle);
-        if (!newTitle) {
+        if (!newTitle || newTitle == projectName) {
             // Reset title
             document.getElementById("title").innerHTML = projectName;
             return;
@@ -127,7 +127,7 @@
       <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
       <button class="btn btn-view mx-1" type="button" onclick="location.href=`project.html?projectName=${encodeURI(projectName)}`">All
         leaves</button>
-        
+
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-view mx-1" data-toggle="modal" data-target="#exampleModal">
             New Leaf
@@ -174,7 +174,7 @@
 
     <div class="container">
       <div class="page-header text-center">
-          
+
       </div>
       <ul id="timeline" class="timeline">
           <li id='defaultLeaf'>
