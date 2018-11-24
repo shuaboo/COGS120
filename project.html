@@ -86,7 +86,12 @@
 
             // Move the key from projectName to newTitle
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
-            allProjects[newTitle] = allProjects[projectName];
+            existingProjectFolders[projectName] = {};
+            existingProjectFolders[projectName].description = projectDescription;
+            existingProjectFolders[projectName].data = [];
+            allProjects[newTitle] = {};
+            allProjects[newTitle].description = allProjects[projectName].description;
+            allProjects[newTitle].data = allProjects[projectName].data;
             delete allProjects[projectName];
             localStorage.setItem("projectFolders", JSON.stringify(allProjects));
 
@@ -128,7 +133,7 @@
         <section class="nav">
             <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
             <button type="button" class="btn btn-view mx-1" onclick="location.href=`sprout.html?projectName=${encodeURI(projectName)}`">Treeline</button>
-            
+
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-view mx-1" data-toggle="modal" data-target="#exampleModal">
                 New Leaf
