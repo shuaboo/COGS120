@@ -39,6 +39,10 @@ html, body {
 }
 .card {
   padding: 10px; 
+  box-shadow:5px 10px 0px rgba(0, 109, 73, 0.123);
+}.card2 {
+  padding: 10px; 
+  background-color: #ffffff !important;
 }
 #title {
   margin-bottom:30px; 
@@ -156,15 +160,6 @@ html, body {
 }
 .timeline-badge.success {
   background-color:  rgb(103, 221, 205)!important;
-}
-.timeline-badge.warning {
-  background-color: #f0ad4e !important;
-}
-.timeline-badge.danger {
-  background-color: #d9534f !important;
-}
-.timeline-badge.info {
-  background-color: #5bc0de !important;
 }
 .timeline-title {
   margin-top: 0;
