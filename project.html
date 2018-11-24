@@ -65,7 +65,6 @@
             `);
         }
         function saveNote(ftext, furl, fnotes, newNotes) {
-          alert("1");
           var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
           var thisProjectFolder = allProjects[projectName].data || [];
           for (i = 0; i < thisProjectFolder.length; i++) {
