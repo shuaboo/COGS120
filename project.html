@@ -77,25 +77,26 @@
         }
 
         function saveTitle(newTitle) {
-            newTitle = encodeURI(newTitle);
-            if (!newTitle) {
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            if (!allProjects[projectName]) return; // something's wrong...
+            if (!newTitle || allProjects[newTitle]) {
                 // Reset title
                 document.getElementById("title").innerHTML = projectName;
                 return;
             }
 
             // Move the key from projectName to newTitle
-            var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
             allProjects[newTitle] = allProjects[projectName];
             delete allProjects[projectName];
             localStorage.setItem("projectFolders", JSON.stringify(allProjects));
 
             // Reload window with new title
-            window.location.search = `projectName=${newTitle}`;
+            window.location.search = `projectName=${encodeURI(newTitle)}`;
         }
 
         function saveDesc(newDesc) {
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            if (!allProjects[projectName]) return; // something's wrong...
             if (!newDesc) {
                 // Reset description
                 var description = allProjects[projectName].description;
@@ -106,6 +107,7 @@
                 document.getElementById("description").innerHTML = newDesc;
             }
         }
+
 
         function addNewCard(text, url) {
             if (url) {
