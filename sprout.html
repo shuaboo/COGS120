@@ -34,10 +34,10 @@
           <div class="timeline-panel">
 
             <!-- Button trigger modal -->
-            <div class="card" class="btn btn-view" data-toggle="modal" data-target="#file_${text}">
+            <div class="card body" class="btn btn-view" data-toggle="modal" data-target="#file_${text}">
+                <class="text"><i class="glyphicon glyphicon-time"></i>${date}</p>
                 <img class="card-img-top" src="${url}">
                 <div class="card-body">${text}
-                  <small class="text"><i class="glyphicon glyphicon-time"></i>${date}</small></p>
                 </div>
 
             </div>
@@ -79,7 +79,7 @@
     function saveTitle(newTitle) {
         var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
         if (!allProjects[projectName]) return; // something's wrong...
-        if (!newTitle || allProjects[newTitle]) {
+        if (!newTitle || !allProjects[newTitle]) {
             // Reset title
             document.getElementById("title").innerHTML = projectName;
             return;
@@ -126,10 +126,10 @@
 <body>
   <div class="p-5">
     <section class="nav">
-      <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
+      <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Projects</button>
       <button class="btn btn-view mx-1" type="button" onclick="location.href=`project.html?projectName=${encodeURI(projectName)}`">All
         leaves</button>
-        
+
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-view mx-1" data-toggle="modal" data-target="#exampleModal">
             New Leaf
@@ -162,23 +162,27 @@
             </div>
         </div>
       <div style="flex: 1"></div>
+
+      <!-- Title editing form -->
+      <div style="text-align: center">
+            <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
+            <br>
+            <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
+        </div>
+
+        <div style="flex: 2"></div>
       <button type="button" class="btn btn-view" onclick="localStorage.clear(); location.href = 'index.html'">Log out</button>
     </section>
 
     <div class="container">
       <div class="page-header text-center">
-        <!-- Title editing form -->
-        <div style="text-align: center">
-            <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
-            <br>
-            <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
-        </div>
+
       </div>
       <ul id="timeline" class="timeline">
           <li id='defaultLeaf'>
                 <div class="timeline-badge white"><i class="glyphicon glyphicon"></i></div>
                 <div class="timeline-panel">
-                <div class='card'>Add your inspirations and creations by growing a new leaf!</div>
+                <div class='card2'>Add your inspirations and creations by growing a new leaf!</div>
           </li>
       </ul>
     </div>
