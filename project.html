@@ -18,7 +18,8 @@
 
         window.onload = function () {
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
-            var thisProjectFolder = allProjects[projectName] || {data: [], description: "nonexistent project!"};
+            if (!allProjects[projectName]) window.location = "home.html";
+            var thisProjectFolder = allProjects[projectName];
             thisProjectFolder.data.forEach(({ text, url, notes }) => displayCard(text, url, notes));
             document.getElementById("title").innerHTML = projectName;
             document.getElementById("description").innerHTML = thisProjectFolder.description;
