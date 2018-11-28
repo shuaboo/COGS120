@@ -87,19 +87,17 @@
             }
 
             // Move the key from projectName to newTitle
-<<<<<<< HEAD
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
-            existingProjectFolders[projectName] = {};
-            existingProjectFolders[projectName].description = projectDescription;
-            existingProjectFolders[projectName].data = [];
-            allProjects[newTitle] = {};
-            allProjects[newTitle].description = allProjects[projectName].description;
-            allProjects[newTitle].data = allProjects[projectName].data;
-=======
-            allProjects[newTitle] = allProjects[projectName];
->>>>>>> origin/Development
-            delete allProjects[projectName];
-            localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+                        if (!allProjects[projectName]) return; // something's wrong...
+                        if (!newTitle || allProjects[newTitle]) {
+                            // Reset title
+                            document.getElementById("title").innerHTML = projectName;
+                            return;
+                        }
+                        // Move the key from projectName to newTitle
+                        allProjects[newTitle] = allProjects[projectName];
+                        delete allProjects[projectName];
+                        localStorage.setItem("projectFolders", JSON.stringify(allProjects));
 
             // Reload window with new title
             window.location.search = `projectName=${encodeURI(newTitle)}`;
