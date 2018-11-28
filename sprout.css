@@ -8,7 +8,9 @@ html, body {
 .row {
   padding: 30px 20px;
 }
-
+.container {
+  padding: 20px; 
+}
 .content {
   position:relative;
   font-weight:600;
@@ -37,6 +39,10 @@ html, body {
 }
 .card {
   padding: 10px; 
+  box-shadow:5px 10px 0px rgba(0, 109, 73, 0.123);
+}.card2 {
+  padding: 10px; 
+  background-color: #ffffff !important;
 }
 #title {
   margin-bottom:30px; 
@@ -92,7 +98,6 @@ html, body {
   border-radius: 2px;
   position: relative;
   -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-
 }
 .timeline > li > .timeline-panel:before {
   position: absolute;
@@ -155,15 +160,6 @@ html, body {
 .timeline-badge.success {
   background-color:  rgb(103, 221, 205)!important;
 }
-.timeline-badge.warning {
-  background-color: #f0ad4e !important;
-}
-.timeline-badge.danger {
-  background-color: #d9534f !important;
-}
-.timeline-badge.info {
-  background-color: #5bc0de !important;
-}
 .timeline-title {
   margin-top: 0;
   color: inherit;
@@ -193,4 +189,27 @@ html, body {
     border: 1px rgba(127,127,127,0.2) inset;
     background: rgba(255,255,255,0.2);
     padding: 2px;
+}
+
+#newLeafContainer .hide-when-inactive {
+  display: none;
+}
+
+#newLeafContainer:focus-within .hide-when-inactive,
+#newLeafContainer.shown .hide-when-inactive {
+  display: block;
+}
+
+#newLeafContainer {
+  width: 30%;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+#newLeafContainer textarea {
+  width: 100%;
+}
+
+#newLeafContainer:focus-within textarea,
+#newLeafContainer.shown textarea {
+  display: none;
 }

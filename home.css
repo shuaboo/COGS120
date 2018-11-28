@@ -43,3 +43,7 @@ html, body {
 #defaultProject:not(:only-child) {
     display: none;
 }
+.default {
+    background:#fff; 
+    border-radius: 10px; 
+}

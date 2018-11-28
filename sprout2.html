@@ -2,19 +2,19 @@
 <html lang="en">
 
 <head>
-  <title>Sprout</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="sprout.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-    window.projectName = new URLSearchParams(window.location.search).get('projectName');
+    <title>Sprout</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="sprout.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        window.projectName = new URLSearchParams(window.location.search).get('projectName');
     window.invertedFlag = false;
 
     window.onload = function () {
@@ -28,16 +28,16 @@
 
     function displaySprout(text, url, date, notes) {
       console.log(text, url, date, notes);
-      var container = document.getElementById("timeline");
+      var container = document.getElementById("timelineLeaves");
       container.insertAdjacentHTML("afterbegin", `<li ${invertedFlag ? 'class="timeline-inverted"' : ''}>
           <div class="timeline-badge white"><i class="glyphicon glyphicon"></i></div>
           <div class="timeline-panel">
 
             <!-- Button trigger modal -->
-            <div class="card body" class="btn btn-view" data-toggle="modal" data-target="#file_${text}">
-                <class="text"><i class="glyphicon glyphicon-time"></i>${date}</p>
+            <div class="card" class="btn btn-view" data-toggle="modal" data-target="#file_${text}">
                 <img class="card-img-top" src="${url}">
                 <div class="card-body">${text}
+                  <small class="text"><i class="glyphicon glyphicon-time"></i>${date}</small></p>
                 </div>
 
             </div>
@@ -79,7 +79,7 @@
     function saveTitle(newTitle) {
         var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
         if (!allProjects[projectName]) return; // something's wrong...
-        if (!newTitle || !allProjects[newTitle]) {
+        if (!newTitle || allProjects[newTitle]) {
             // Reset title
             document.getElementById("title").innerHTML = projectName;
             return;
@@ -120,69 +120,52 @@
             displaySprout(text, url, date, notes);
         }
     }
+
+
   </script>
 </head>
-
 <body>
-  <div class="p-5">
-    <section class="nav">
-      <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Projects</button>
-      <button class="btn btn-view mx-1" type="button" onclick="location.href=`project.html?projectName=${encodeURI(projectName)}`">All
-        leaves</button>
+    <div class="p-5">
+        <section class="nav">
+            <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
+            <button class="btn btn-view mx-1" type="button" onclick="location.href=`project.html?projectName=${encodeURI(projectName)}`">All
+                leaves</button>
+            <div style="flex: 1"></div>
+            <button type="button" class="btn btn-view" onclick="localStorage.clear(); location.href = 'index.html'">Log out</button>
+        </section>
+        <div class="container">
+            <div class="page-header text-center">
+                <!-- Title editing form -->
+                <div style="text-align: center">
+                    <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
+                    <br>
+                    <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
+                </div>
+            </div>
+            <div id="newLeafContainer" class="card my-3 mx-auto text-center">
+                <form> 
+                    <img id="newLeafImg" class="hide-when-inactive card-img-top" src="placeholder">
+                    <div class="form-group">
+                        <input name="newCardText" type="text" class="hide-when-inactive form-control" placeholder="New Leaf Name" onfocus="document.getElementById('newLeafContainer').className += ' shown';"/>
+                    </div>
+                    <div class="form-group">
+                        <input name="newCardUrl" type="text" class="hide-when-inactive form-control" placeholder="Image URL" onfocus="document.getElementById('newLeafContainer').className += ' shown';" onblur="document.getElementById('newLeafContainer').src = this.value;"/>
+                    </div>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-view mx-1" data-toggle="modal" data-target="#exampleModal">
-            New Leaf
-        </button>
+                    <textarea id="newLeaf" placeholder="Click to create a new leaf!" class="card m-auto"></textarea>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input name="newCardText" type="text" class="form-control" placeholder="New Leaf Name" />
-                        </div>
-                        <div class="form-group">
-                            <input name="newCardUrl" type="text" class="form-control" placeholder="Image URL" />
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-view mx-1" type="button" data-dismiss="modal" onclick="addNewCard(this.form.newCardText.value, this.form.newCardUrl.value);">
-                            Add Leaf</button>
-                    </div>
+                    <button class="hide-when-inactive btn btn-view mx-1" type="button" onclick="addNewCard(this.form.newCardText.value, this.form.newCardUrl.value);">Add Leaf</button>
                 </form>
             </div>
         </div>
-      <div style="flex: 1"></div>
 
-      <!-- Title editing form -->
-      <div style="text-align: center">
-            <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
-            <br>
-            <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
-        </div>
-
-        <div style="flex: 2"></div>
-      <button type="button" class="btn btn-view" onclick="localStorage.clear(); location.href = 'index.html'">Log out</button>
-    </section>
-
-    <div class="container">
-      <div class="page-header text-center">
-
-      </div>
-      <ul id="timeline" class="timeline">
-          <li id='defaultLeaf'>
-                <div class="timeline-badge white"><i class="glyphicon glyphicon"></i></div>
-                <div class="timeline-panel">
-                <div class='card2'>Add your inspirations and creations by growing a new leaf!</div>
-          </li>
-      </ul>
+        <ul id="timelineLeaves" class="timeline">
+            <li id='defaultLeaf'>
+                  <div class="timeline-badge white"><i class="glyphicon glyphicon"></i></div>
+                  <div class="timeline-panel">
+                  <div class='card'>Add your inspirations and creations by growing a new leaf!</div>
+            </li>
+        </ul>
     </div>
+</body>
+</html>

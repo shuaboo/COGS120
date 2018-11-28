@@ -18,7 +18,8 @@
 
         window.onload = function () {
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
-            var thisProjectFolder = allProjects[projectName] || {data: [], description: "nonexistent project!"};
+            if (!allProjects[projectName]) window.location = "home.html";
+            var thisProjectFolder = allProjects[projectName];
             thisProjectFolder.data.forEach(({ text, url, notes }) => displayCard(text, url, notes));
             document.getElementById("title").innerHTML = projectName;
             document.getElementById("description").innerHTML = thisProjectFolder.description;
@@ -77,14 +78,16 @@
         }
 
         function saveTitle(newTitle) {
-            newTitle = encodeURI(newTitle);
-            if (!newTitle) {
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            if (!allProjects[projectName]) return; // something's wrong...
+            if (!newTitle || allProjects[newTitle]) {
                 // Reset title
                 document.getElementById("title").innerHTML = projectName;
                 return;
             }
 
             // Move the key from projectName to newTitle
+<<<<<<< HEAD
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
             existingProjectFolders[projectName] = {};
             existingProjectFolders[projectName].description = projectDescription;
@@ -92,15 +95,19 @@
             allProjects[newTitle] = {};
             allProjects[newTitle].description = allProjects[projectName].description;
             allProjects[newTitle].data = allProjects[projectName].data;
+=======
+            allProjects[newTitle] = allProjects[projectName];
+>>>>>>> origin/Development
             delete allProjects[projectName];
             localStorage.setItem("projectFolders", JSON.stringify(allProjects));
 
             // Reload window with new title
-            window.location.search = `projectName=${newTitle}`;
+            window.location.search = `projectName=${encodeURI(newTitle)}`;
         }
 
         function saveDesc(newDesc) {
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            if (!allProjects[projectName]) return; // something's wrong...
             if (!newDesc) {
                 // Reset description
                 var description = allProjects[projectName].description;
@@ -111,6 +118,7 @@
                 document.getElementById("description").innerHTML = newDesc;
             }
         }
+
 
         function addNewCard(text, url) {
             if (url) {
@@ -131,7 +139,7 @@
 <body>
     <div class='p-5'>
         <section class="nav">
-            <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Home</button>
+            <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Projects</button>
             <button type="button" class="btn btn-view mx-1" onclick="location.href=`sprout.html?projectName=${encodeURI(projectName)}`">Treeline</button>
 
             <!-- Button trigger modal -->
