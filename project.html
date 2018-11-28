@@ -91,7 +91,6 @@
 
             // Move the key from projectName to newTitle
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
-<<<<<<< HEAD
                         if (!allProjects[projectName]) return; // something's wrong...
                         if (!newTitle || allProjects[newTitle]) {
                             // Reset title
@@ -102,11 +101,6 @@
                         allProjects[newTitle] = allProjects[projectName];
                         delete allProjects[projectName];
                         localStorage.setItem("projectFolders", JSON.stringify(allProjects));
-=======
-            allProjects[newTitle] = allProjects[projectName];
-            delete allProjects[projectName];
-            localStorage.setItem("projectFolders", JSON.stringify(allProjects));
->>>>>>> origin/Development
 
             // Reload window with new title
             window.location.search = `projectName=${encodeURI(newTitle)}`;
