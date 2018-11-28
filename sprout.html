@@ -75,7 +75,18 @@
         </li>`);
       window.invertedFlag = !window.invertedFlag;
     }
-
+    function saveNote(ftext, furl, fnotes, newNotes) {
+      var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
+      var thisProjectFolder = allProjects[projectName].data || [];
+      for (i = 0; i < thisProjectFolder.length; i++) {
+        if (thisProjectFolder[i].text == ftext && thisProjectFolder[i].url == furl && thisProjectFolder[i].notes == fnotes) {
+          thisProjectFolder[i].notes = newNotes;
+        }
+      }
+      allProjects[projectName].data = thisProjectFolder;
+      localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+    }
+    
     function saveTitle(newTitle) {
         var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
         if (!allProjects[projectName]) return; // something's wrong...
