@@ -50,6 +50,17 @@ html, body {
   font-size:30px; 
   color: rgb(103, 221, 205);
 }
+.hide-when-active {
+  position:relative;
+    font-weight:600;
+    text-align: center;
+}
+.hide-when-active h3 {
+    font-weight:800; 
+    font-size:30px; 
+    color: rgb(103, 221, 205);
+}
+
 
 /* Make the default project invisible if there are other projects */
 /*
@@ -195,6 +206,7 @@ html, body {
     background: rgba(255,255,255,0.2);
     padding: 2px;
 }
+
 
 #newLeafContainer .hide-when-inactive {
   display: none;
