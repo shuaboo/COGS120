@@ -148,18 +148,16 @@
                 <div class="timeline-badge white"><i class="glyphicon glyphicon"></i></div>
                 <div class="timeline-panel">
                     <form>
-                        <div class="card">
-                            <div id="newLeafContainer" class="card-body">
+                        <div id="newLeafContainer" class="card" onclick="this.className += ' shown';">
+                            <div class="card-body">
+                                <div class="hide-when-active">Click to create a new leaf!</div>
                                 <img id="newLeafImg" class="hide-when-inactive card-img-top" src="placeholder">
                                 <div class="form-group">
-                                    <input name="newCardText" type="text" class="hide-when-inactive form-control" placeholder="New Leaf Name" onfocus="document.getElementById('newLeafContainer').className += ' shown';"/>
+                                    <input name="newCardText" type="text" class="hide-when-inactive form-control" placeholder="New Leaf Name"/>
                                 </div>
                                 <div class="form-group">
-                                    <input name="newCardUrl" type="text" class="hide-when-inactive form-control" placeholder="Image URL" onfocus="document.getElementById('newLeafContainer').className += ' shown';" onblur="document.getElementById('newLeafContainer').src = this.value;"/>
+                                    <input name="newCardUrl" type="text" class="hide-when-inactive form-control" placeholder="Image URL" onblur="document.getElementById('newLeafContainer').src = this.value;"/>
                                 </div>
-
-                                <textarea id="newLeaf" placeholder="Click to create a new leaf!" class="card m-auto"></textarea>
-
                                 <button class="hide-when-inactive btn btn-view mx-1" type="button" onclick="addNewCard(this.form.newCardText.value, this.form.newCardUrl.value);">Add Leaf</button>
                             </div>
                         </div>

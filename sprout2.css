@@ -200,15 +200,18 @@ html, body {
   display: none;
 }
 
-#newLeafContainer:focus-within .hide-when-inactive,
 #newLeafContainer.shown .hide-when-inactive {
   display: block;
 }
+
 #newLeafContainer textarea {
   width: 100%;
 }
 
-#newLeafContainer:focus-within textarea,
-#newLeafContainer.shown textarea {
+#newLeafContainer.shown .hide-when-active {
   display: none;
+}
+
+#newLeafContainer:not(.shown) {
+  cursor: pointer;
 }
