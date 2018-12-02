@@ -66,41 +66,41 @@
             `);
         }
         function saveNote(ftext, furl, fnotes, newNotes) {
-          var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
-          var thisProjectFolder = allProjects[projectName].data || [];
-          for (i = 0; i < thisProjectFolder.length; i++) {
-            if (thisProjectFolder[i].text == ftext && thisProjectFolder[i].url == furl && thisProjectFolder[i].notes == fnotes) {
-              thisProjectFolder[i].notes = newNotes;
+            var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
+            var thisProjectFolder = allProjects[projectName].data || [];
+            for (i = 0; i < thisProjectFolder.length; i++) {
+                if (thisProjectFolder[i].text == ftext && thisProjectFolder[i].url == furl && thisProjectFolder[i].notes == fnotes) {
+                    thisProjectFolder[i].notes = newNotes;
+                }
             }
-          }
-          allProjects[projectName].data = thisProjectFolder;
-          localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+            allProjects[projectName].data = thisProjectFolder;
+            localStorage.setItem("projectFolders", JSON.stringify(allProjects));
         }
 
         function saveTitle(newTitle) {
-          newTitle = encodeURI(newTitle);
-          if (newTitle == projectName) {
-            return;
-          }
-          if (!newTitle) {
-              // Reset title
-              document.getElementById("title").innerHTML = projectName;
-              return;
-          }
+            newTitle = encodeURI(newTitle);
+            if (newTitle == projectName) {
+                return;
+            }
+            if (!newTitle) {
+                // Reset title
+                document.getElementById("title").innerHTML = projectName;
+                return;
+            }
 
 
             // Move the key from projectName to newTitle
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
-                        if (!allProjects[projectName]) return; // something's wrong...
-                        if (!newTitle || allProjects[newTitle]) {
-                            // Reset title
-                            document.getElementById("title").innerHTML = projectName;
-                            return;
-                        }
-                        // Move the key from projectName to newTitle
-                        allProjects[newTitle] = allProjects[projectName];
-                        delete allProjects[projectName];
-                        localStorage.setItem("projectFolders", JSON.stringify(allProjects));
+            if (!allProjects[projectName]) return; // something's wrong...
+            if (!newTitle || allProjects[newTitle]) {
+                // Reset title
+                document.getElementById("title").innerHTML = projectName;
+                return;
+            }
+            // Move the key from projectName to newTitle
+            allProjects[newTitle] = allProjects[projectName];
+            delete allProjects[projectName];
+            localStorage.setItem("projectFolders", JSON.stringify(allProjects));
 
             // Reload window with new title
             window.location.search = `projectName=${encodeURI(newTitle)}`;
@@ -154,7 +154,7 @@
                 <div class="modal-dialog" role="document">
                     <form class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">New Leaf</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -174,25 +174,22 @@
                     </form>
                 </div>
             </div>
-            <div style="flex: 1"></div>
-
-            <!-- Title editing form -->
-            <div style="text-align: center">
-                <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
-                <br>
-                <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
-            </div>
-
-            <div style="flex: 2"></div>
+            <div style="flex: 3"></div>
             <form class="align-baseline">
                 <div class="input-group">
 
                     <div class="input-group-btn">
-                        <button type="button" class="btn btn-view" onclick="localStorage.clear(); location.href = 'index.html'">Log out</button>
-
-
+                        <button type="button" class="btn btn-view" onclick="localStorage.clear(); location.href = 'index.html'">Logout</button>
             </form>
         </section>
+
+        <!-- Title editing form -->
+        <div style="text-align: center">
+            <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
+            <br>
+            <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
+        </div>
+
         <section class="cards">
             <div id="cards" class="card-columns p-3">
                 <div class='card' id='defaultLeaf'>Add your inspirations and creations by growing a new leaf!</div>

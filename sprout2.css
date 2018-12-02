@@ -48,7 +48,7 @@ html, body {
   margin-bottom:30px; 
   font-weight:800; 
   font-size:30px; 
-  color: rgb(103, 221, 205);
+  color: rgb(0, 0, 0);
 }
 .hide-when-active {
   position:relative;
@@ -206,8 +206,9 @@ html, body {
     background: rgba(255,255,255,0.2);
     padding: 2px;
 }
-
-
+#newLeafContainer {
+transition: height 0.3s
+}
 #newLeafContainer .hide-when-inactive {
   display: none;
 }

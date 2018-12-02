@@ -32,6 +32,13 @@ html, body {
     float: center;
     color: rgb(103, 221, 205)
 }
+}
+.btn-add{
+    font-weight:800;
+    float: center;
+    color:: rgb(103, 221, 205)
+
+}
 .card-columns {
     column-count: 4;
 }
