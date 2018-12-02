@@ -116,6 +116,9 @@
                 allProjects[projectName].data = thisProjectFolder;
                 localStorage.setItem("projectFolders", JSON.stringify(allProjects));
                 displaySprout(text, url, date, notes);
+                // Reset form and turn back into a button
+                document.getElementById("newLeafForm").reset();
+                document.getElementById("newLeafContainer").classList.remove("shown");
             }
         }
 
@@ -150,8 +153,8 @@
             <li id="addLeafContainer">
                 <div class="timeline-badge white"><i class="glyphicon glyphicon"></i></div>
                 <div class="timeline-panel">
-                    <form>
-                        <div id="newLeafContainer" class="card" onclick="this.className += ' shown';">
+                    <form id="newLeafForm">
+                        <div id="newLeafContainer" class="card" onclick="this.classList.add('shown');">
                             <div class="card-body">
                                 <div class="hide-when-active">
                                     <h3>Add New Leaf</h3>
@@ -166,7 +169,7 @@
                                     <input name="newCardUrl" type="text" class="hide-when-inactive form-control"
                                         placeholder="Image URL" onblur="document.getElementById('newLeafContainer').src = this.value;" />
                                 </div>
-                                <button class="hide-when-inactive btn btn-view mx-1" type="button" onclick="addNewCard(this.form.newCardText.value, this.form.newCardUrl.value);">Add
+                                <button class="hide-when-inactive btn btn-view mx-1" type="button" onclick="addNewCard(this.form.newCardText.value, this.form.newCardUrl.value); event.stopPropagation();">Add
                                     Leaf</button>
                             </div>
                         </div>
