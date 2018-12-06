@@ -20,27 +20,27 @@
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
             if (!allProjects[projectName]) window.location = "home.html";
             var thisProjectFolder = allProjects[projectName];
-            thisProjectFolder.data.forEach(({ text, url, notes }) => displayCard(text, url, notes));
+            thisProjectFolder.data.forEach(({ text, url, notes }, i) => displayCard(text, url, notes, i));
             document.getElementById("title").innerHTML = projectName;
             document.getElementById("description").innerHTML = thisProjectFolder.description;
         }
 
-        function displayCard(text, url, notes) {
+        function displayCard(text, url, notes, index) {
             var container = document.getElementById("cards");
             container.insertAdjacentHTML("beforeend", `
             <!-- Button trigger modal -->
-            <div class="card" class="btn btn-view" data-toggle="modal" data-target="#file_${text}">
+            <div class="card" class="btn btn-view" data-toggle="modal" data-target="#file_${index}">
                 <img class="card-img-top" src="${url}">
                 <div class="card-body">${text}</div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="file_${text}" tabindex="-1" role="dialog" aria-labelledby="file_${text}_label"
+            <div class="modal fade" id="file_${index}" tabindex="-1" role="dialog" aria-labelledby="file_${index}_label"
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <form class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="file_${text}_label">${text}</h5>
+                            <h5 class="modal-title" id="file_${index}_label">${text}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -51,13 +51,11 @@
                             </div>
                             <div class="col-sm-4" style="display: flex; flex-direction: column">
                                 <h2 style="font-size: 3vw"; class="ex1" id="notehead"><b>Notes</b></h2>
-                                <div id="notesText${text}" contenteditable="true" style="flex: 1; border: 1px inset #dadada">
-                                    ${notes}
-                                </div>
+                                <span name="notesText${text}" contenteditable="true" style="flex: 1; border: 1px inset #dadada" onblur="saveNote('${index}', this.innerHTML)">${notes}</span>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal" onclick="saveNote('${text}', '${url}', '${notes}', document.getElementById('notesText${text}').innerText)">Save</button>
+                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -65,14 +63,11 @@
 
             `);
         }
-        function saveNote(ftext, furl, fnotes, newNotes) {
+
+        function saveNote(index, newNotes) {
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
             var thisProjectFolder = allProjects[projectName].data || [];
-            for (i = 0; i < thisProjectFolder.length; i++) {
-                if (thisProjectFolder[i].text == ftext && thisProjectFolder[i].url == furl && thisProjectFolder[i].notes == fnotes) {
-                    thisProjectFolder[i].notes = newNotes;
-                }
-            }
+            thisProjectFolder[index].notes = newNotes;
             allProjects[projectName].data = thisProjectFolder;
             localStorage.setItem("projectFolders", JSON.stringify(allProjects));
         }
@@ -127,10 +122,11 @@
                 var thisProjectFolder = allProjects[projectName].data || [];
                 var date = new Date().toLocaleString();
                 var notes = "";
-                thisProjectFolder.push({ text, url, notes, date });
+                var newIndex = thisProjectFolder.push({ text, url, notes, date }) - 1;
+                console.log("newIndex: ", newIndex, ", len: ", thisProjectFolder.length);
                 allProjects[projectName].data = thisProjectFolder;
                 localStorage.setItem("projectFolders", JSON.stringify(allProjects));
-                displayCard(text, url, notes);
+                displayCard(text, url, notes, newIndex);
             }
         }
 
