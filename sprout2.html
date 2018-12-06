@@ -172,14 +172,14 @@
                                     <h3>Click to Sprout Leaf</h3>
                                     Sprout your new inspirations and creations here!
                                 </div>
-                                <img id="newLeafImg" class="hide-when-inactive card-img-top" src="placeholder">
+                                <img id="newLeafImg" class="hide-when-inactive card-img-top mb-3" src="">
                                 <div class="form-group">
                                     <input name="newCardText" type="text" class="hide-when-inactive form-control"
                                         placeholder="New Leaf Name" />
                                 </div>
                                 <div class="form-group">
                                     <input name="newCardUrl" type="text" class="hide-when-inactive form-control"
-                                        placeholder="Image URL" onblur="document.getElementById('newLeafContainer').src = this.value;" />
+                                        placeholder="Image URL" oninput="document.getElementById('newLeafImg').src = this.value;" />
                                 </div>
                                 <button class="hide-when-inactive btn btn-view mx-1" type="button" onclick="addNewCard(this.form.newCardText.value, this.form.newCardUrl.value); event.stopPropagation();">Add
                                     Leaf</button>
