@@ -87,6 +87,7 @@
         }
 
         function saveTitle(newTitle) {
+            newTitle = newTitle.replace(/\n|<br>/g, ' '); // remove newlines
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
             if (!allProjects[projectName]) return; // something's wrong...
             if (!newTitle || allProjects[newTitle]) {
@@ -133,8 +134,6 @@
                 document.getElementById("newLeafContainer").classList.remove("shown");
             }
         }
-
-
     </script>
 </head>
 
@@ -155,9 +154,9 @@
         
         <!-- Title editing form -->
         <div style="text-align: center">
-            <span id="title" contenteditable="true" onblur="saveTitle(this.innerHTML)"></span>
+            <span id="title" contenteditable="true" oninput="filterLinebreaks(event)" onblur="saveTitle(this.innerHTML)"></span>
             <br>
-            <span id="description" contenteditable="true" onblur="saveDesc(this.innerHTML)"></span>
+            <span id="description" contenteditable="true" oninput="filterLinebreaks(event)" onblur="saveDesc(this.innerHTML)"></span>
         </div>
 
         <ul id="timelineLeaves" class="timeline">
