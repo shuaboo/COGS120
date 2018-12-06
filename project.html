@@ -123,7 +123,6 @@
                 var date = new Date().toLocaleString();
                 var notes = "";
                 var newIndex = thisProjectFolder.push({ text, url, notes, date }) - 1;
-                console.log("newIndex: ", newIndex, ", len: ", thisProjectFolder.length);
                 allProjects[projectName].data = thisProjectFolder;
                 localStorage.setItem("projectFolders", JSON.stringify(allProjects));
                 displayCard(text, url, notes, newIndex);
