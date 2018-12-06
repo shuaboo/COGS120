@@ -20,16 +20,17 @@
             var allProjects = JSON.parse(localStorage.getItem("projectFolders")) || {};
             if (!allProjects[projectName]) window.location = "home.html";
             var thisProjectFolder = allProjects[projectName];
-            thisProjectFolder.data.forEach(({ text, url, notes }, i) => displayCard(text, url, notes, i));
+            thisProjectFolder.data.forEach(({ text, url, date, notes }, i) => displayCard(text, url, date, notes, i));
             document.getElementById("title").innerHTML = projectName;
             document.getElementById("description").innerHTML = thisProjectFolder.description;
         }
 
-        function displayCard(text, url, notes, index) {
+        function displayCard(text, url, date, notes, index) {
             var container = document.getElementById("cards");
             container.insertAdjacentHTML("beforeend", `
             <!-- Button trigger modal -->
             <div class="card" class="btn btn-view" data-toggle="modal" data-target="#file_${index}">
+                <small class="text"><i class="glyphicon glyphicon-time"></i>${date}</small>
                 <img class="card-img-top" src="${url}">
                 <div class="card-body">${text}</div>
             </div>
@@ -125,7 +126,7 @@
                 var newIndex = thisProjectFolder.push({ text, url, notes, date }) - 1;
                 allProjects[projectName].data = thisProjectFolder;
                 localStorage.setItem("projectFolders", JSON.stringify(allProjects));
-                displayCard(text, url, notes, newIndex);
+                displayCard(text, url, date, notes, newIndex);
                 // Reset form
                 document.getElementById("newLeafForm").reset();
             }
