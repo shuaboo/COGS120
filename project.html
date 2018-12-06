@@ -127,6 +127,8 @@
                 allProjects[projectName].data = thisProjectFolder;
                 localStorage.setItem("projectFolders", JSON.stringify(allProjects));
                 displayCard(text, url, notes, newIndex);
+                // Reset form
+                document.getElementById("newLeafForm").reset();
             }
         }
 
@@ -148,7 +150,7 @@
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form class="modal-content">
+                    <form id="newLeafForm" class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">New Leaf</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
