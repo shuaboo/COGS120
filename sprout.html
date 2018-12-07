@@ -34,7 +34,7 @@
 
             <!-- Button trigger modal -->
             <div class="card" class="btn btn-view" data-toggle="modal" data-target="#file_${index}">
-                <small class="text"><i class="glyphicon glyphicon-time"></i>${date}</small>
+                <p id="date"><i class="glyphicon glyphicon-time"></i>${date}</p>
                 <img class="card-img-top" src="${url}">
                 <div class="card-body">${text}</div>
             </div>
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal">Close</button>
+                            <button class="btn btn-view mx-1" type="button" data-dismiss="modal">Save</button>
                         </div>
                     </form>
                 </div>
@@ -133,7 +133,7 @@
     <div class="p-5">
         <section class="nav">
             <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Projects</button>
-            <button class="btn btn-view mx-1" type="button" onclick="location.href=`project.html?projectName=${encodeURI(projectName)}`">Archive</button>
+            <button class="btn btn-view mx-1" type="button" onclick="location.href=`project.html?projectName=${encodeURI(projectName)}`">All Leaves</button>
 
             <div style="flex: 3"></div>
             <form class="align-baseline">
