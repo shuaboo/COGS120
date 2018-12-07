@@ -50,17 +50,32 @@ html, body {
   font-size:30px; 
   color: rgb(103, 221, 205);
 }
+.hide-when-active {
+  position:relative;
+    font-weight:600;
+    text-align: center;
+}
+.hide-when-active h3 {
+    font-weight:800; 
+    font-size:30px; 
+    color: rgb(103, 221, 205);
+}
+
 
 /* Make the default project invisible if there are other projects */
+/*
 #defaultLeaf:not(:only-child) {
   display: none;
 }
+*/
 
 /*timeline structure*/
 .timeline {
   list-style: none;
   padding: 20px 0 20px;
   position: relative;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .timeline:before {
   top: 0;
@@ -92,6 +107,7 @@ html, body {
 .timeline > li:after {
   clear: both;
 }
+
 .timeline > li > .timeline-panel {
   width: 30%;
   float: left;
@@ -139,16 +155,16 @@ html, body {
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
 }
-.timeline > li.timeline-inverted > .timeline-panel {
+.timeline > li:nth-child(odd) > .timeline-panel {
   float: right;
 }
-.timeline > li.timeline-inverted > .timeline-panel:before {
+.timeline > li:nth-child(odd) > .timeline-panel:before {
   border-left-width: 0;
   border-right-width: 15px;
   left: -15px;
   right: auto;
 }
-.timeline > li.timeline-inverted > .timeline-panel:after {
+.timeline > li:nth-child(odd) > .timeline-panel:after {
   border-left-width: 0;
   border-right-width: 14px;
   left: -14px;
@@ -191,25 +207,23 @@ html, body {
     padding: 2px;
 }
 
+
 #newLeafContainer .hide-when-inactive {
   display: none;
 }
 
-#newLeafContainer:focus-within .hide-when-inactive,
 #newLeafContainer.shown .hide-when-inactive {
   display: block;
 }
 
-#newLeafContainer {
-  width: 30%;
-  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-}
 #newLeafContainer textarea {
   width: 100%;
 }
 
-#newLeafContainer:focus-within textarea,
-#newLeafContainer.shown textarea {
+#newLeafContainer.shown .hide-when-active {
   display: none;
+}
+
+#newLeafContainer:not(.shown) {
+  cursor: pointer;
 }
