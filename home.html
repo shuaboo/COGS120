@@ -50,11 +50,8 @@
 <body>
     <div class="p-5">
         <section class="nav">
-            <!-- Button trigger modal -->
             <button class="btn btn-view mx-1" type="button" onclick="location.href = 'home.html'">Projects</button>
-            <button type="button" class="btn btn-view mx-1" data-toggle="modal" data-target="#exampleModal">
-                New Project
-            </button>
+            <button class="btn btn-view mx-1" type="button" data-toggle="modal" data-target="#exampleModal"> New Project</button>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -80,15 +77,12 @@
                     </form>
                 </div>
             </div>
-            <div style="flex: 1"></div>
+
+            <div style="flex: 3"></div>
             <form class="align-baseline">
                 <div class="input-group">
                     <div class="input-group-btn">
-                        <button class="btn btn-view mx-1" type="button" onclick="localStorage.clear(); location.href = 'index.html'">Log out</button>
-
-
-                    </div>
-                </div>
+                        <button type="button" class="btn btn-view" onclick="localStorage.clear(); location.href = 'index.html'">Logout</button>
             </form>
         </section>
 
