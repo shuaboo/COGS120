@@ -123,7 +123,9 @@
                 displaySprout(text, url, date, notes, newIndex);
                 // Reset form and turn back into a button
                 document.getElementById("newLeafForm").reset();
+                document.getElementById("newLeafImg").src = "";
                 document.getElementById("newLeafContainer").classList.remove("shown");
+
             }
         }
     </script>
