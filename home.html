@@ -40,6 +40,8 @@
                 existingProjectFolders[projectName].data = [];
                 localStorage.setItem("projectFolders", JSON.stringify(existingProjectFolders));
             }
+            // Clear the form
+            document.getElementById("newProjectForm").reset();
         }
         function visitPage(name) {
             window.location = "sprout.html?projectName=" + encodeURI(name);
@@ -60,7 +62,7 @@
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form class="modal-content">
+                    <form id="newProjectForm" class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Plant a New Project!</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
